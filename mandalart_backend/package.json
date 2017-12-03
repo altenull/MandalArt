@@ -3,5 +3,27 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "altenull",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "cross-env": "^5.1.1",
+    "dotenv": "^4.0.0",
+    "joi": "^13.0.2",
+    "jsonwebtoken": "^8.1.0",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0",
+    "mongoose": "^4.13.5",
+    "nodemon": "^1.12.1"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "scripts": {
+    "start": "cross-env NODE_PATH=src node src",
+    "start:dev": "cross-env NODE_PATH=src nodemon --watch src/ src/index.js"
+  }
 }

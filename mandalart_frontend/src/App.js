@@ -1,21 +1,48 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route } from 'react-router-dom';
+import { Home, Auth } from 'pages';
+import HeaderContainer from 'containers/Base/HeaderContainer';
+
+import storage from 'lib/storage';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as userActions from 'redux/modules/user';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    initializeUserInfo = async () => {
+        const loggedInfo = storage.get('loggedInfo');
+        if (!loggedInfo)
+            return;
+
+        const { UserActions } = this.props;
+        UserActions.setLoggedInfo(loggedInfo);
+
+        try {
+            await UserActions.checkStatus();
+        } catch (e) {
+            storage.remove('loggedInfo');
+            window.location.href = '/auth/login?expired';
+        }
+    }
+
+    componentDidMount() {
+        this.initializeUserInfo();
+    }
+
+    render() {
+        return (
+            <div>
+                <HeaderContainer/>
+                <Route exact path="/" component={Home}/>
+                <Route path="/auth" component={Auth}/>
+            </div>
+        );
+    }
 }
 
-export default App;
+export default connect(
+    null,
+    (dispatch) => ({
+        UserActions: bindActionCreators(userActions, dispatch)
+    })
+)(App);

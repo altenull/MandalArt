@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
-import { Link } from 'react-router-dom';
 import { shadow } from 'lib/styleUtils';
 
-const BorderedButton = styled(Link)`
+const BorderedButton = styled.div`
     font-weight: 700;
     color: ${oc.yellow[6]};
     border: 1px solid ${oc.yellow[6]};
@@ -26,12 +25,13 @@ const BorderedButton = styled(Link)`
     }
 `;
 
-const LoginButton = () => {
+const NicknameButton = ({children, onClick}) => {
     return (
-        <BorderedButton to="/auth/login">
-            로그인 / 가입
+        <BorderedButton
+            onClick={onClick}>
+            {children}
         </BorderedButton>
     );
 };
 
-export default LoginButton;
+export default NicknameButton;

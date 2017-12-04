@@ -19,29 +19,6 @@ class Login extends Component {
         });
     }
 
-    componentWillUnmount() {
-        const { AuthActions } = this.props;
-        AuthActions.initializeForm('login');
-    }
-    
-    componentDidMount() {
-        const { location } = this.props;
-        const query = queryString.parse(location.search);
-
-        if (query.expired !== undefined) {
-            this.setError('세션이 만료되었습니다. 다시 로그인하세요.');
-        }
-    }
-
-    setError = (message) => {
-        const { AuthActions } = this.props;
-        AuthActions.setError({
-            form: 'login',
-            message
-        });
-        return false;
-    }
-
     handleLocalLogin = async () => {
         const { form, AuthActions, UserActions, history } = this.props;
         const { email, password } = form.toJS();
@@ -59,9 +36,38 @@ class Login extends Component {
         }
     }
 
+    handleKeyPress = (e) => {
+        if (e.charCode === 13) {
+            this.handleLocalLogin();
+        }
+    }
+
+    componentWillUnmount() {
+        const { AuthActions } = this.props;
+        AuthActions.initializeForm('login');
+    }
+
+    setError = (message) => {
+        const { AuthActions } = this.props;
+        AuthActions.setError({
+            form: 'login',
+            message
+        });
+        return false;
+    }
+
+    componentDidMount() {
+        const { location } = this.props;
+        const query = queryString.parse(location.search);
+
+        if (query.expired !== undefined) {
+            this.setError('세션이 만료되었습니다. 다시 로그인하세요.');
+        }
+    }
+
     render() {
         const { email, password } = this.props.form.toJS();
-        const { handleChange, handleLocalLogin } = this;
+        const { handleChange, handleKeyPress, handleLocalLogin } = this;
         const { error } = this.props;
 
         return (
@@ -80,6 +86,7 @@ class Login extends Component {
                     type="password"
                     value={password}
                     onChange={handleChange}
+                    onKeyPress={handleKeyPress}
                 />
                 {
                     error && <AuthError>{error}</AuthError>

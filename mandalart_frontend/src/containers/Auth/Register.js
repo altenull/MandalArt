@@ -23,23 +23,28 @@ class Register extends Component {
             if (!isEmail(value)) {
                 this.setError('잘못된 이메일 형식입니다.');
                 return false;
+            } else {
+                this.setError(null);
+                return true;
             }
-            return true;
         },
         nickname : (value) => {
             if (!isLength(value, { min: 1, max: 10})) {
                 this.setError('닉네임은 1~10자리여야 합니다.');
                 return false;
+            } else {
+                this.setError(null);
+                return true;
             }
-            return true;
         },
         password : (value) => {
             if (!isLength(value, { min: 8, max : 15})) {
                 this.setError('비밀번호는 8~15자리여야 합니다.');
                 return false;
+            } else {
+                this.setError(null);
+                return true;
             }
-            this.setError(null);
-            return true;
         }
     };
 
@@ -111,7 +116,7 @@ class Register extends Component {
             });
             const loggedInfo = this.props.result.toJS();
 
-            storage.set('logedInfo', loggedInfo);
+            storage.set('loggedInfo', loggedInfo);
             UserActions.setLoggedInfo(loggedInfo);
             UserActions.setValidated(true);
             history.push('/'); // 회원가입 성공시 홈페이지로 이동

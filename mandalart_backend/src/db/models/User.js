@@ -55,7 +55,12 @@ User.methods.validatePassword = function(password) {
 };
 
 User.methods.generateToken = function() {
-    //JWT에 담을 내용
+    const payload = {
+        _id: this._id,
+        email: this.email
+    };
+
+    return token.generateToken(payload, 'user');
 };
 
 module.exports = mongoose.model('User', User);

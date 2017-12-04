@@ -13,12 +13,12 @@ const app = new Koa();
 const router = new Router();
 const api = require('./api');
 
-
+const { jwtMiddledware } = require('lib/token');
 
 db.connect();
 
 app.use(bodyParser());
-
+app.use(jwtMiddledware);
 router.use('/api', api.routes());
 app.use(router.routes()).use(router.allowedMethods());
 

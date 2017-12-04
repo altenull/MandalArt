@@ -40,8 +40,15 @@ exports.localRegister = async (ctx) => {
         ctx.throw(500, e);
     }
 
+    let token = null;
+    try {
+        token = await user.generateToken();
+    } catch (e) {
+        ctx.throw(500, e);
+    }
+
+    ctx.cookies.set('access_token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7});
     ctx.body = user;
-    // @TODO 토큰 생성.. payload 부분.
 }
 
 exports.localLogin = async (ctx) => {
@@ -71,10 +78,47 @@ exports.localLogin = async (ctx) => {
         return;
     }
 
+    let token = null;
+    try {
+        token = await user.generateToken();
+    } catch (e) {
+        ctx.throw(500, e);
+    }
+
+    ctx.cookies.set('access_token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7});
     ctx.body = user;
 };
 
+exports.exists = async (ctx) => {
+    const { key, value } = ctx.params;
+    let user = null;
 
-// auth.post('/login/local', authCtrl.localLogin);
-// auth.get('/exists/:key(email|nickname)/:value', authCtrl.exists);
-// auth.post('/logout', authCtrl.logout);
+    try {
+        user = await (key === 'email' ? User.findByEmail(value) : User.findByNickname(value));
+    } catch (e) {
+        ctx.throw(500, e);
+    }
+
+    ctx.body = {
+        exists: user !== null
+    };
+}
+
+exports.logout = async (ctx) => {
+    ctx.cookies.set('access_token', null, {
+        maxAge: 0,
+        httpOnly: true
+    });
+    ctx.status = 204;
+};
+
+exports.check = (ctx) => {
+    const { user } = ctx.request;
+
+    if (!user) {
+        ctx.status = 403; // forbidden
+        return;
+    }
+
+    ctx.body = user;
+};

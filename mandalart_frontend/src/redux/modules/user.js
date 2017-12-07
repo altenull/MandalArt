@@ -15,9 +15,7 @@ export const logout = createAction(LOGOUT, AuthAPI.logout);
 export const checkStatus = createAction(CHECK_STATUS, AuthAPI.checkStatus);
 
 const initialState = Map({
-    loggedInfo: Map({
-        nickname: null
-    }),
+    loggedInfo: Map({}),
     logged: false,
     validated: false
 });
@@ -27,7 +25,7 @@ export default handleActions({
     [SET_VALIDATED]: (state, action) => state.set('validated', action.payload),
     ...pender({
         type: CHECK_STATUS,
-        onSuccess: (state, action) => state.set('loggedInfo', Map(action.payload.data)).set('validated', true), 
+        onSuccess: (state, action) => state.set('validated', true), 
         onFailure: (state, action) => initialState
     })
 }, initialState);

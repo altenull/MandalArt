@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
 import { shadow, media } from 'lib/styleUtils';
+import { Link } from 'react-router-dom';
 
 // 상단 고정, 그림자
 const Positioner = styled.div`
@@ -44,11 +45,12 @@ const HeaderContents = styled.div`
 `;
 
 // 로고
-const Logo = styled.div`
+const Logo = styled(Link)`
     font-size: 1.8rem;
     letter-spacing: 2px;
     color: ${oc.orange[6]};
     font-family: 'Rajdhani';
+    text-decoration: none;
 `;
 
 // 중간 여백
@@ -61,7 +63,7 @@ const Header = ({scrolled, children}) => {
         <Positioner scrolled={scrolled}>
             <Background scrolled={scrolled}>
                 <HeaderContents>
-                    <Logo>Mandal-Art</Logo>
+                    <Logo to="/">Mandal-Art</Logo>
                     <Spacer/>
                     {children}
                 </HeaderContents>

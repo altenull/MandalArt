@@ -5,14 +5,14 @@ import { shadow, media } from 'lib/styleUtils';
 
 // 상단 고정, 그림자
 const Positioner = styled.div`
-    display: flex;
-    flex-direction: column;
+    width: 100%;
     position: fixed;
     top: 0px;
-    width: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
     transition: .2s ease;
     ${props => props.scrolled && shadow(1)};
-    
 `;
 
 // 배경, 내용 중간 정렬
@@ -21,7 +21,7 @@ const Background = styled.div`
     justify-content: center;
     height: auto;
     transition: .2s ease;
-    background: ${props => props.scrolled && 'white' };
+    background: ${props => props.scrolled && 'white'};
 `;
 
 // 해더의 내용

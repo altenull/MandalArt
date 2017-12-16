@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { MainWrapper } from 'components/Base/Main';
+import { MainContainer } from 'components/Base/Main';
 
 class Home extends Component {
     render() {
         return (
-            <MainWrapper>
-                asdifjasofasdfj
-            </MainWrapper>
+            <MainContainer>
+            </MainContainer>
         );
     }
 }

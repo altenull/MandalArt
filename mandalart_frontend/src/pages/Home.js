@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { MainWrapper } from 'components/Base/Main';
 
 class Home extends Component {
     render() {
         return (
-            <div>
-                Home
-            </div>
+            <MainWrapper>
+                asdifjasofasdfj
+            </MainWrapper>
         );
     }
 }
+
+export default Home;

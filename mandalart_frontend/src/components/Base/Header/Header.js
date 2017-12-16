@@ -10,15 +10,18 @@ const Positioner = styled.div`
     position: fixed;
     top: 0px;
     width: 100%;
-    ${shadow(1)}
+    transition: .2s ease;
+    ${props => props.scrolled && shadow(1)};
+    
 `;
 
-// 흰 배경, 내용 중간 정렬
-const WhiteBackground = styled.div`
-    background: white;
+// 배경, 내용 중간 정렬
+const Background = styled.div`
     display: flex;
     justify-content: center;
     height: auto;
+    transition: .2s ease;
+    background: ${props => props.scrolled && 'white' };
 `;
 
 // 해더의 내용
@@ -53,23 +56,16 @@ const Spacer = styled.div`
     flex-grow: 1;
 `;
 
-// 하단 그래디언트 테두리
-const GradientBorder = styled.div`
-    height: 3px;
-    background: linear-gradient(to right, ${oc.orange[0]}, ${oc.orange[7]});
-`;
-
-const Header = ({children}) => {
+const Header = ({scrolled, children}) => {
     return (
-        <Positioner>
-            <WhiteBackground>
+        <Positioner scrolled={scrolled}>
+            <Background scrolled={scrolled}>
                 <HeaderContents>
                     <Logo>Mandal-Art</Logo>
                     <Spacer/>
                     {children}
                 </HeaderContents>
-            </WhiteBackground>
-            <GradientBorder/>
+            </Background>
         </Positioner>
     );
 };

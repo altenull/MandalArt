@@ -4,8 +4,24 @@ import { connect } from 'react-redux';
 import * as userActions from 'redux/modules/user';
 import { bindActionCreators } from 'redux';
 import storage from 'lib/storage';
+import { throttle } from 'lodash';
 
 class HeaderContainer extends Component {
+    state = {
+        scrolled: false
+    }
+
+    handleScroll = throttle((e) => {
+        const { scrollTop } = document.documentElement;
+        const scrolled = (scrollTop !== 0);
+        
+        if (this.state.scrolled !== scrolled) {
+            this.setState({
+                scrolled
+            });
+        }
+    }, 500);
+    
     handleLogout = async () => {
         const { UserActions } = this.props;
         try {
@@ -18,15 +34,21 @@ class HeaderContainer extends Component {
         window.location.href = '/';
     }
 
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
     render() {
         const { visible, user } = this.props;
         const { handleLogout } = this;
-        
+        const { scrolled } = this.state;
+
         if (!visible)
             return null;
 
         return (
-            <Header>
+            <Header
+                scrolled={scrolled}>
                 { user.get('logged') 
                     ? ( <NicknameButton onClick={handleLogout}>
                             {user.getIn(['loggedInfo', 'nickname'])}

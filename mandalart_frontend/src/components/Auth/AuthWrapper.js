@@ -41,7 +41,7 @@ const Contents = styled.div`
 const AuthWrapper = ({children}) => {
     return (
         <Positioner>
-            <ShadowedBox>
+            <ShadowedBox  className="animated zoomIn">
                 <LogoWrapper>
                     <Logo to="/">Mandal-Art</Logo>
                 </LogoWrapper>

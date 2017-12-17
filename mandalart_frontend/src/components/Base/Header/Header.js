@@ -22,7 +22,7 @@ const Background = styled.div`
     justify-content: center;
     height: auto;
     transition: .2s ease;
-    background: ${props => props.scrolled && 'white'};
+    background: ${props => props.scrolled && oc.orange[6]};
 `;
 
 // 해더의 내용
@@ -48,7 +48,7 @@ const HeaderContents = styled.div`
 const Logo = styled(Link)`
     font-size: 1.8rem;
     letter-spacing: 2px;
-    color: ${oc.orange[6]};
+    color: white;
     font-family: 'Rajdhani';
     text-decoration: none;
 `;

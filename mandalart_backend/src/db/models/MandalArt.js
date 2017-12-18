@@ -30,4 +30,18 @@ const MandalArt = new Schema({
     }
 });
 
+MandalArt.statics.Write = function({goal, plans}) {
+    const mandalart = new this({
+        // writer를 Request에 담아서 받아야함.
+        goal,
+        plans
+    });
+
+    return mandalart.save();
+}
+
+MandalArt.statics.validateObjectId = function({id}) {
+    return mongoose.Types.ObjectId.isValid(id);
+}
+
 module.exports = mongoose.model('MandalArt', MandalArt);

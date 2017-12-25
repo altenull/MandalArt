@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
+import { ListUp, Write } from 'containers/MandalArt';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as baseActions from 'redux/modules/base';
-import { MainContainer } from 'components/Base/Main';
+import { Route } from 'react-router-dom';
 
-class Home extends Component {
+class MandalArt extends Component {
     componentWillMount() {
-        this.props.BaseActions.setHeaderScrollNecessity(true);
-    }
-
-    componentWillUnmount() {
         this.props.BaseActions.setHeaderScrollNecessity(false);
     }
 
     render() {
         return (
-            <MainContainer>
-            </MainContainer>
+            <div>
+                <Route exact path="/mandalart" component={ListUp}/>
+                <Route path="/mandalart/write" component={Write}/>
+            </div>
         );
     }
 }
@@ -28,4 +27,4 @@ export default connect(
     (dispatch) => ({
         BaseActions: bindActionCreators(baseActions, dispatch)
     })
-)(Home);
+)(MandalArt);

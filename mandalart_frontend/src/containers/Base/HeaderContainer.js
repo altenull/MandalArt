@@ -39,7 +39,7 @@ class HeaderContainer extends Component {
     }
 
     render() {
-        const { visible, user } = this.props;
+        const { visible, needScroll, user } = this.props;
         const { handleLogout } = this;
         const { scrolled } = this.state;
 
@@ -48,7 +48,8 @@ class HeaderContainer extends Component {
 
         return (
             <Header
-                scrolled={scrolled}>
+                scrolled={scrolled}
+                needScroll={needScroll}>
                 { user.get('logged') 
                     ? ( <NicknameButton onClick={handleLogout}>
                             {user.getIn(['loggedInfo', 'nickname'])}
@@ -65,6 +66,7 @@ class HeaderContainer extends Component {
 export default connect(
     (state) => ({
         visible: state.base.getIn(['header', 'visible']),
+        needScroll: state.base.getIn(['header', 'needScroll']),
         user: state.user
     }),
     (dispatch) => ({

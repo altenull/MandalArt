@@ -22,7 +22,7 @@ const Background = styled.div`
     justify-content: center;
     height: auto;
     transition: .2s ease;
-    background: ${props => props.scrolled && oc.orange[6]};
+    background: ${props => props.needScroll ? (props.scrolled && oc.orange[6]) : oc.orange[6]};
 `;
 
 // 해더의 내용
@@ -58,10 +58,10 @@ const Spacer = styled.div`
     flex-grow: 1;
 `;
 
-const Header = ({scrolled, children}) => {
+const Header = ({scrolled, needScroll, children}) => {
     return (
         <Positioner scrolled={scrolled}>
-            <Background scrolled={scrolled}>
+            <Background scrolled={scrolled} needScroll={needScroll}>
                 <HeaderContents>
                     <Logo to="/">Mandal-Art</Logo>
                     <Spacer/>

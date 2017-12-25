@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { Home, Auth } from 'pages';
+import { Home, Auth, MandalArt } from 'pages';
 import HeaderContainer from 'containers/Base/HeaderContainer';
-
 import storage from 'lib/storage';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -35,6 +34,7 @@ class App extends Component {
                 <HeaderContainer/>
                 <Route exact path="/" component={Home}/>
                 <Route path="/auth" component={Auth}/>
+                <Route path="/mandalart" component={MandalArt}></Route>
             </div>
         );
     }

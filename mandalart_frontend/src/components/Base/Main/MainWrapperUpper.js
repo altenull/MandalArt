@@ -167,7 +167,7 @@ const MainWrapperUpper = () => {
                     <ContentL>
                         <Text1>Hi Stranger~!</Text1>
                         <Text2>Mandal-Art로 새로운 계획을 세워보세요!</Text2>
-                        <BorderedButton to="#">시작하기</BorderedButton>
+                        <BorderedButton to="/mandalart">시작하기</BorderedButton>
                     </ContentL>
                     <ContentR>
                         <Cell className="animated hinge fadeInLeftDown">M</Cell>

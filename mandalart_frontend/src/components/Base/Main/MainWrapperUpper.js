@@ -10,7 +10,7 @@ const Positioner = styled.div`
 `;
 
 const GradientBackground = styled.div`
-    background: linear-gradient(120deg, ${oc.orange[2]}, ${oc.orange[6]});
+    background: linear-gradient(to Right, ${oc.orange[6]}, ${oc.orange[3]});
     display: flex;
     justify-content: center;
 `;
@@ -143,13 +143,13 @@ const BorderedButton = styled(Link)`
     transition: all .3s;
 
     &:hover {
-        background: ${oc.orange[3]};
-        transform: translateY(-2px);
+        background: ${oc.orange[6]};
+        transform: translateY(-1px);
         ${shadow(1)}
     }
 
     &:active {
-        background: ${oc.orange[4]};
+        background: ${oc.orange[5]};
     }
 
     ${media.tablet`

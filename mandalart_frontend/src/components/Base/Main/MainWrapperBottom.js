@@ -9,7 +9,6 @@ const Positioner = styled.div`
 `;
 
 const Background = styled.div`
-    background: white;
     display: flex;
     justify-content: center;
 `;

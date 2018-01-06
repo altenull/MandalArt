@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
-import { shadow, media } from 'lib/styleUtils';
 
 const HoveredInput = styled.input`
     min-width: 180px;
@@ -29,10 +28,11 @@ const HoveredInput = styled.input`
     }
 `;
 
-const Input = ({placeholder}) => {
+const Input = ({...rest}) => {
     return (
         <HoveredInput
-            placeholder={placeholder}/>
+            {...rest}
+            maxLength="15"/>
     );
 }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
-import { Link } from 'react-router-dom';
 import { shadow } from 'lib/styleUtils';
 
 const Positioner = styled.div`
@@ -10,7 +9,7 @@ const Positioner = styled.div`
     margin: 2rem 0;
 `;
 
-const InvertedButton = styled(Link)`
+const InvertedButton = styled.div`
     width: 180px;
     font-size: 1.6rem;
     font-weight: 700;
@@ -32,10 +31,10 @@ const InvertedButton = styled(Link)`
     }
 `;
 
-const CompleteButton = () => {
+const CompleteButton = ({onClick}) => {
     return (
         <Positioner>
-            <InvertedButton to="#">
+            <InvertedButton onClick={onClick}>
                 완료
             </InvertedButton>
         </Positioner>

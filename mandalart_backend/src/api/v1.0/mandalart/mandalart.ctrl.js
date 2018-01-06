@@ -4,6 +4,7 @@ const MandalArt = require('../../../db/models/MandalArt');
 // WRITE MandalArt: POST /api/v1.0/mandalart/
 exports.write = async (ctx) => {
     const schema = Joi.object().keys({
+        writer: Joi.string().required(),
         goal: Joi.string().min(1).max(15).required(),
         plans: Joi.object().keys({
             plan1: Joi.string().min(1).max(15).required(),
@@ -14,8 +15,7 @@ exports.write = async (ctx) => {
             plan6: Joi.string().min(1).max(15).required(),
             plan7: Joi.string().min(1).max(15).required(),
             plan8: Joi.string().min(1).max(15).required()
-        }),
-        username: Joi.string()
+        })        
     });
 
     const result = Joi.validate(ctx.request.body, schema);

@@ -30,9 +30,9 @@ const MandalArt = new Schema({
     }
 });
 
-MandalArt.statics.Write = function({goal, plans}) {
+MandalArt.statics.Write = function({writer, goal, plans}) {
     const mandalart = new this({
-        // writer를 Request에 담아서 받아야함.
+        writer,
         goal,
         plans
     });

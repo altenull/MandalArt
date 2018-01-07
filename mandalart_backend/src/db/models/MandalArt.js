@@ -28,10 +28,7 @@ const MandalArt = new Schema({
         type: Boolean,
         default: false
     },
-    starred: {
-        type: Number,
-        default: 0
-    }
+    starred: [String]
 });
 
 MandalArt.statics.Write = function({writer, goal, plans}) {

@@ -27,6 +27,10 @@ const MandalArt = new Schema({
     is_edited: {
         type: Boolean,
         default: false
+    },
+    starred: {
+        type: Number,
+        default: 0
     }
 });
 

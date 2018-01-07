@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Background, InputWrapper, Input, InputSet, CompleteButton } from 'components/MandalArt';
+import { Background, InputWrapper, Input, InputSet, CompleteButton } from 'components/MandalArt/Write';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as mandalartActions from 'redux/modules/mandalart';

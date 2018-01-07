@@ -17,11 +17,9 @@ const HoveredInput = styled.input`
     border: none;
     border-radius: 3px;
     box-sizing: border-box;
-
     ::placeholder {
         color: ${oc.gray[6]};
     }
-
     &:hover,
     &:focus {
         background: ${oc.orange[4]};

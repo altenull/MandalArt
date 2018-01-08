@@ -114,7 +114,7 @@ exports.delete = async (ctx) => {
 
 // READ MandalArt: GET /api/v1.0/mandalart/
 exports.get = async (ctx) => {
-    MandalArt.find()
+    await MandalArt.find()
         .sort({"_id": -1})
         .limit(6)
         .exec((err, mandalarts) => {

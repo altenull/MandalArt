@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
 import { shadow } from 'lib/styleUtils';
+import TimeAgo from 'react-timeago';
+import MandalContents from './MandalContents';
 
 const Positioner = styled.div`
     width: 550px;
@@ -9,7 +11,7 @@ const Positioner = styled.div`
     margin: 0 auto;
     
     & + & {
-        margin-top: 1rem;
+        margin-top: 2rem;
     }
 `;
 
@@ -93,7 +95,7 @@ const Mandal = ({data, ownership}) => {
             <ShadowedBox>
                 <Header>
                     <Writer href="#">{data.writer}</Writer>
-                    <WroteLog>wrote a log · 1 seconds ago</WroteLog>
+                    <WroteLog>wrote a log · <TimeAgo date={data.date.created}/></WroteLog>
                     { ownership && 
                         <div>
                             <ControlButton className="material-icons">mode_edit</ControlButton>
@@ -102,18 +104,11 @@ const Mandal = ({data, ownership}) => {
                     }
                 </Header>
                 <Content>
-                    <div>{data.plans.plan1}</div>
-                    <div>{data.plans.plan2}</div>
-                    <div>{data.plans.plan3}</div>
-                    <div>{data.plans.plan4}</div>
-                    <div>{data.plans.plan5}</div>
-                    <div>{data.plans.plan6}</div>
-                    <div>{data.plans.plan7}</div>
-                    <div>{data.plans.plan8}</div>
+                    <MandalContents goal={data.goal} plans={data.plans}/>
                 </Content>
                 <Footer>
                     <StarButton className="material-icons">star</StarButton>
-                    <StarCount>0</StarCount>
+                    <StarCount>{data.starred.length}</StarCount>
                 </Footer>
             </ShadowedBox>
         </Positioner>

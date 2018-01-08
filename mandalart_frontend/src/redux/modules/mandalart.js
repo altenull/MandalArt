@@ -7,12 +7,14 @@ const CHANGE_GOAL = 'mandalart/CHANGE_GOAL'; // 최종 목표 입력
 const CHANGE_PLANS = 'mandalart/CHAGNE_PLANS'; // 세부 목표 입력
 const INITIALIZE_FORM = 'mandalart/INITIALIZE_FORM'; // form 초기화
 const MANDALART_WRITE = 'mandalart/MANDALART_WRITE'; // madnalart 쓰기
+const MANDALART_GET = 'mandalart/MANDALART_GET'; // mandalart 불러오기
 
 // Action Create
 export const changeGoal = createAction(CHANGE_GOAL);
 export const changePlans = createAction(CHANGE_PLANS);
 export const initializeForm = createAction(INITIALIZE_FORM);
 export const mandalartWrite = createAction(MANDALART_WRITE, MandalArtAPI.mandalartWrite);
+export const mandalartGet = createAction(MANDALART_GET, MandalArtAPI.mandalartGet);
 
 const initialState = Map({
     goal: '',
@@ -42,5 +44,8 @@ export default handleActions({
     },
     ...pender({
         type: MANDALART_WRITE
+    }),
+    ...pender({
+        type: MANDALART_GET
     })
 }, initialState);

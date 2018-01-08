@@ -4,8 +4,8 @@ import oc from 'open-color';
 import { shadow } from 'lib/styleUtils';
 
 const Positioner = styled.div`
-    width: 500px;
-    height: 500px;
+    width: 550px;
+    height: 550px;
     margin: 0 auto;
     
     & + & {
@@ -87,34 +87,29 @@ const StarCount = styled.span`
     margin-left: 0.4rem;
 `;
 
-const Mandal = () => {
+const Mandal = ({data, ownership}) => {
     return(
         <Positioner>
             <ShadowedBox>
                 <Header>
-                    <Writer href="#">Writer</Writer>
+                    <Writer href="#">{data.writer}</Writer>
                     <WroteLog>wrote a log · 1 seconds ago</WroteLog>
-                    <ControlButton className="material-icons">mode_edit</ControlButton>
-                    <ControlButton className="material-icons">clear</ControlButton>
+                    { ownership && 
+                        <div>
+                            <ControlButton className="material-icons">mode_edit</ControlButton>
+                            <ControlButton className="material-icons">clear</ControlButton>
+                        </div>
+                    }
                 </Header>
                 <Content>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
-                    Mandalart 자리<br/>
+                    <div>{data.plans.plan1}</div>
+                    <div>{data.plans.plan2}</div>
+                    <div>{data.plans.plan3}</div>
+                    <div>{data.plans.plan4}</div>
+                    <div>{data.plans.plan5}</div>
+                    <div>{data.plans.plan6}</div>
+                    <div>{data.plans.plan7}</div>
+                    <div>{data.plans.plan8}</div>
                 </Content>
                 <Footer>
                     <StarButton className="material-icons">star</StarButton>

@@ -25,14 +25,18 @@ const ShadowedBox = styled.div`
 
 const Header = styled.div`
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-end;
     padding: 1.6rem 2rem;
 `;
 
+const HeaderInfo = styled.div`
+    display: flex;
+`;
+
 const Writer = styled.a`
     color: ${oc.gray[8]};
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 700;
     text-decoration: none;
 `;
@@ -94,8 +98,10 @@ const Mandal = ({data, ownership}) => {
         <Positioner>
             <ShadowedBox>
                 <Header>
-                    <Writer href="#">{data.writer}</Writer>
-                    <WroteLog>wrote a log · <TimeAgo date={data.date.created}/></WroteLog>
+                    <HeaderInfo>
+                        <Writer href="#">{data.writer}</Writer>
+                        <WroteLog>wrote a log · <TimeAgo date={data.date.created}/></WroteLog>
+                    </HeaderInfo>
                     { ownership && 
                         <div>
                             <ControlButton className="material-icons">mode_edit</ControlButton>

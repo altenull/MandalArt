@@ -6,28 +6,34 @@ import { bindActionCreators } from 'redux';
 import * as mandalartActions from 'redux/modules/mandalart';
 
 class ListUp extends Component {
-    state = {}
-
     componentDidMount() {
         this._getMandals();
+    }
+
+    componentWillUnmount() {
+        const { MandalArtActions } = this.props;
+        MandalArtActions.initializeMandalData();
     }
 
     _getMandals = async () => {
         const { MandalArtActions } = this.props;
         const mandals = await MandalArtActions.mandalartGet();
-        this.setState({
-            mandals
-        })
+        this._setMandals(mandals);
+    }
+
+    _setMandals = async (mandals) => {
+        const { MandalArtActions } = this.props;
+        const mandalData = mandals.data;
+        await MandalArtActions.mandalartSet({mandalData});
     }
 
     render() {
-        const { mandals } = this.state;
-        const { user } = this.props;
+        const { user, mandalData } = this.props;
         const writer = user.getIn(['loggedInfo', 'nickname']);
 
         return (
             <ListWrapper isLogged={user.get('logged')}>
-                {mandals ? <MandalList data={mandals.data} currentUser={writer}/> : <Spinner/>}
+                {mandalData.toJS() ? <MandalList data={mandalData.toJS()} currentUser={writer}/> : <Spinner/>}
             </ListWrapper>
         );
     }
@@ -35,7 +41,8 @@ class ListUp extends Component {
 
 export default connect(
     (state) => ({
-        user: state.user
+        user: state.user,
+        mandalData: state.mandalart.get('mandalData')
     }),
     (dispatch) => ({
         MandalArtActions: bindActionCreators(mandalartActions, dispatch)

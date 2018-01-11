@@ -15,7 +15,7 @@ exports.write = async (ctx) => {
             plan6: Joi.string().min(1).max(15).required(),
             plan7: Joi.string().min(1).max(15).required(),
             plan8: Joi.string().min(1).max(15).required()
-        })        
+        })
     });
 
     const result = Joi.validate(ctx.request.body, schema);
@@ -115,8 +115,29 @@ exports.delete = async (ctx) => {
 // READ MandalArt: GET /api/v1.0/mandalart/
 exports.get = async (ctx) => {
     await MandalArt.find()
-        .sort({"_id": -1})
-        .limit(6)
+        .sort({_id: -1})
+        .limit(3)
+        .exec((err, mandalarts) => {
+            if (err)
+                throw err;
+            ctx.body = mandalarts;
+        });
+}
+
+// READ OlderMandalArt: GET /api/v1.0/mandalart/older/:id
+exports.getOlder = async (ctx) => {
+    const { id } = ctx.params;
+    console.log(id);
+    let objId = MandalArt.generateObjectId(id);
+
+    if ( !MandalArt.validateObjectId(objId) ) {
+        ctx.status = 400; // Bad Request
+        return;
+    }
+
+    await MandalArt.find({ _id: { $lt: id }})
+        .sort({_id: -1})
+        .limit(3)
         .exec((err, mandalarts) => {
             if (err)
                 throw err;

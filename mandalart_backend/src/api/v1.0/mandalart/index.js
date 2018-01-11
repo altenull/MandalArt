@@ -7,5 +7,6 @@ mandalart.post('/write', mandalartCtrl.write);
 mandalart.put('/:id', mandalartCtrl.modify);
 mandalart.delete('/:id', mandalartCtrl.delete);
 mandalart.get('/', mandalartCtrl.get);
+mandalart.get('/older/:id', mandalartCtrl.getOlder);
 
 module.exports = mandalart;

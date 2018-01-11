@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
-import { shadow, media } from 'lib/styleUtils';
+import { media } from 'lib/styleUtils';
 
 const Positioner = styled.div`
     width: 100%;

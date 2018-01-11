@@ -46,7 +46,7 @@ class Write extends Component {
 
     componentWillUnmount() {
         const { MandalArtActions } = this.props;
-        MandalArtActions.initializeForm();
+        MandalArtActions.initializeMandalArt();
     }
 
     render() {
@@ -78,8 +78,8 @@ class Write extends Component {
 
 export default connect(
     (state) => ({
-        goal: state.mandalart.get('goal'),
-        plans: state.mandalart.get('plans'),
+        goal: state.mandalart.getIn(['write', 'goal']),
+        plans: state.mandalart.getIn(['write', 'plans']),
         user: state.user
     }),
     (dispatch) => ({

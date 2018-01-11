@@ -5,46 +5,48 @@ import { pender } from 'redux-pender';
 
 const CHANGE_GOAL = 'mandalart/CHANGE_GOAL'; // 최종 목표 입력
 const CHANGE_PLANS = 'mandalart/CHAGNE_PLANS'; // 세부 목표 입력
-const INITIALIZE_FORM = 'mandalart/INITIALIZE_FORM'; // form 초기화
+const INITIALIZE_MANDALART = 'mandalart/INITIALIZE_MANDALART'; // mandalart 초기화
 const MANDALART_WRITE = 'mandalart/MANDALART_WRITE'; // madnalart 쓰기
 const MANDALART_GET = 'mandalart/MANDALART_GET'; // mandalart 불러오기
 const MANDALART_SET = 'mandalart/MANDALART_SET'; // mandalart state 저장
-const INITIALIZE_MANDALDATA = 'mandalart/INITIALIZE_MANDALDATA'; // mandalData 초기화
 
 // Action Create
 export const changeGoal = createAction(CHANGE_GOAL);
 export const changePlans = createAction(CHANGE_PLANS);
-export const initializeForm = createAction(INITIALIZE_FORM);
+export const initializeMandalArt = createAction(INITIALIZE_MANDALART);
 export const mandalartWrite = createAction(MANDALART_WRITE, MandalArtAPI.mandalartWrite);
 export const mandalartGet = createAction(MANDALART_GET, MandalArtAPI.mandalartGet);
 export const mandalartSet = createAction(MANDALART_SET);
-export const initializeMandalData = createAction(INITIALIZE_MANDALDATA);
 
 const initialState = Map({
-    goal: '',
-    plans: Map({
-        plan1: '',
-        plan2: '',
-        plan3: '',
-        plan4: '',
-        plan5: '',
-        plan6: '',
-        plan7: '',
-        plan8: ''
+    write: Map({
+        goal: '',
+        plans: Map({
+            plan1: '',
+            plan2: '',
+            plan3: '',
+            plan4: '',
+            plan5: '',
+            plan6: '',
+            plan7: '',
+            plan8: ''
+        })
     }),
-    mandalData: List()
+    listUp: Map({
+        mandalData: List()
+    })
 });
 
 export default handleActions({
     [CHANGE_GOAL]: (state, action) => {
         const { name, value } = action.payload;
-        return state.set(name, value);
+        return state.setIn(['write', name], value);
     },
     [CHANGE_PLANS]: (state, action) => {
         const { name, value } = action.payload;
-        return state.setIn(['plans', name], value);
+        return state.setIn(['write', 'plans', name], value);
     },
-    [INITIALIZE_FORM]: () => {
+    [INITIALIZE_MANDALART]: () => {
         return initialState;
     },
     ...pender({
@@ -55,9 +57,6 @@ export default handleActions({
     }),
     [MANDALART_SET]: (state, action) => {
         const { mandalData } = action.payload;
-        return state.set('mandalData', fromJS(mandalData));
-    },
-    [INITIALIZE_MANDALDATA]: () => {
-        return initialState;
+        return state.setIn(['listUp', 'mandalData'], fromJS(mandalData));
     }
 }, initialState);

@@ -12,7 +12,7 @@ class ListUp extends Component {
 
     componentWillUnmount() {
         const { MandalArtActions } = this.props;
-        MandalArtActions.initializeMandalData();
+        MandalArtActions.initializeMandalArt();
     }
 
     _getMandals = async () => {
@@ -42,7 +42,7 @@ class ListUp extends Component {
 export default connect(
     (state) => ({
         user: state.user,
-        mandalData: state.mandalart.get('mandalData')
+        mandalData: state.mandalart.getIn(['listUp', 'mandalData'])
     }),
     (dispatch) => ({
         MandalArtActions: bindActionCreators(mandalartActions, dispatch)

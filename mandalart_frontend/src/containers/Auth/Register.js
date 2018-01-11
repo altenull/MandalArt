@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as authActions from 'redux/modules/auth';
 import * as userActions from 'redux/modules/user';
 import storage from 'lib/storage';
-import { isEmail, isLength, isAlphanumeric } from 'validator';
+import { isEmail, isLength } from 'validator';
 import debounce from 'lodash/debounce';
 
 class Register extends Component {

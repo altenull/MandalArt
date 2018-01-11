@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
-import { shadow } from 'lib/styleUtils';
 import WriteButton from './WriteButton';
 
 const Positioner = styled.div`
@@ -9,7 +8,7 @@ const Positioner = styled.div`
     margin: 5rem auto 0 auto;
 `;
 
-const ShadowedBox = styled.div`
+const FlexibleBox = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -27,13 +26,13 @@ const Header = styled.div`
 const ListWrapper = ({isLogged, children}) => {
     return (
         <Positioner>
-            <ShadowedBox>
+            <FlexibleBox>
                 <Header>
                     MandalArt 리스트
                     {isLogged && <WriteButton/>}
                 </Header>
                 {children}
-            </ShadowedBox>
+            </FlexibleBox>
         </Positioner>
     );
 }

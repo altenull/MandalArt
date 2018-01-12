@@ -75,11 +75,10 @@ class ListUp extends Component {
     render() {
         const { user, mandalData } = this.props;
         const writer = user.getIn(['loggedInfo', 'nickname']);
-        // @TODO : mandalData가 항상 true라 Spinner 동작 안함.
 
         return (
             <ListWrapper isLogged={user.get('logged')}>
-                {mandalData ? <MandalList data={mandalData.toJS()} currentUser={writer}/> : <Spinner/>}
+                {!mandalData.isEmpty() ? <MandalList data={mandalData.toJS()} currentUser={writer}/> : <Spinner/>}
             </ListWrapper>
         );
     }

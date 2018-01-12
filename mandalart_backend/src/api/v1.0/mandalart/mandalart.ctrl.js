@@ -84,8 +84,9 @@ exports.modify = async (ctx) => {
 exports.delete = async (ctx) => {
     // CHECK MandalArt ID VALIDITY
     const { id } = ctx.params;
+    let objId = MandalArt.generateObjectId(id);
 
-    if ( !MandalArt.validateObjectId(id) ) {
+    if ( !MandalArt.validateObjectId(objId) ) {
         ctx.status = 400; // Bad Request
         return;
     }
@@ -98,9 +99,6 @@ exports.delete = async (ctx) => {
             ctx.status = 404; // Not Found -> No Resource
             return;
         }
-
-        // mandalarts.writer와 로그인 중인 유저 비교.
-        // 비교해서 아니라면 403에러 Forbidden할 것.
 
         MandalArt.remove({ _id: id }, err => {
             if (err)
@@ -127,7 +125,6 @@ exports.get = async (ctx) => {
 // READ OlderMandalArt: GET /api/v1.0/mandalart/older/:id
 exports.getOlder = async (ctx) => {
     const { id } = ctx.params;
-    console.log(id);
     let objId = MandalArt.generateObjectId(id);
 
     if ( !MandalArt.validateObjectId(objId) ) {

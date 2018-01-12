@@ -93,7 +93,7 @@ const StarCount = styled.span`
     margin-left: 0.4rem;
 `;
 
-const Mandal = ({data, ownership}) => {
+const Mandal = ({data, ownership, onRemove}) => {
     return(
         <Positioner>
             <ShadowedBox>
@@ -105,7 +105,7 @@ const Mandal = ({data, ownership}) => {
                     { ownership && 
                         <div>
                             <ControlButton className="material-icons">mode_edit</ControlButton>
-                            <ControlButton className="material-icons">clear</ControlButton>
+                            <ControlButton className="material-icons" onClick={() => onRemove(data._id)}>clear</ControlButton>
                         </div>
                     }
                 </Header>

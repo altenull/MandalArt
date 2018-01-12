@@ -11,6 +11,7 @@ const MANDALART_GET = 'mandalart/MANDALART_GET'; // mandalart 불러오기
 const MANDALART_SET = 'mandalart/MANDALART_SET'; // mandalart state 저장
 const MANDALART_GET_OLDER = 'mandalart/MANDALART_GET_OLDER';
 const MANDALART_UPDATE = 'mandalart/MANDALART_UPDATE';
+const MANDALART_DELETE = 'mandalart/MANDALART_DELETE';
 
 // Action Create
 export const changeGoal = createAction(CHANGE_GOAL);
@@ -21,6 +22,7 @@ export const mandalartGet = createAction(MANDALART_GET, MandalArtAPI.mandalartGe
 export const mandalartSet = createAction(MANDALART_SET);
 export const mandalartGetOlder = createAction(MANDALART_GET_OLDER, MandalArtAPI.mandalartGetOlder);
 export const mandalartUpdate = createAction(MANDALART_UPDATE);
+export const mandalartDelete = createAction(MANDALART_DELETE, MandalArtAPI.mandalartDelete);
 
 const initialState = Map({
     write: Map({
@@ -75,5 +77,8 @@ export default handleActions({
         console.log('MANDALART_UPDATE');
         console.log(result.toJS());
         return state.setIn(['listUp', 'mandalData'], result);
-    }
+    },
+    ...pender({
+        type: MANDALART_DELETE
+    })
 }, initialState);

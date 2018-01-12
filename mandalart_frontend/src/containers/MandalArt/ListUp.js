@@ -46,6 +46,16 @@ class ListUp extends Component {
         });
     }
 
+    handleRemove = async (id) => {
+        const { MandalArtActions } = this.props;
+
+        try {
+            const result = await MandalArtActions.mandalartDelete(id);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     _getMandals = async () => {
         const { MandalArtActions } = this.props;
         const mandals = await MandalArtActions.mandalartGet();
@@ -74,11 +84,12 @@ class ListUp extends Component {
 
     render() {
         const { user, mandalData } = this.props;
+        const { handleRemove } = this;
         const writer = user.getIn(['loggedInfo', 'nickname']);
 
         return (
             <ListWrapper isLogged={user.get('logged')}>
-                {!mandalData.isEmpty() ? <MandalList data={mandalData.toJS()} currentUser={writer}/> : <Spinner/>}
+                {!mandalData.isEmpty() ? <MandalList data={mandalData.toJS()} currentUser={writer} handleRemove={handleRemove} /> : <Spinner/>}
             </ListWrapper>
         );
     }

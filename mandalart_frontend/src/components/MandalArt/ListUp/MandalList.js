@@ -1,11 +1,12 @@
 import React from 'react';
 import Mandal from './Mandal';
 
-const MandalList = ({data, currentUser}) => {
+const MandalList = ({data, currentUser, handleRemove}) => {
     const mandalList = data.map((data) =>
         <Mandal
             data={data}
             ownership={(data.writer === currentUser)}
+            onRemove={handleRemove}
             key={data._id}
         />
     );

@@ -287,3 +287,65 @@
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn
 }
+
+@-webkit-keyframes mandal-enter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes mandal-enter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.mandal-enter {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-name: mandal-enter;
+  animation-name: mandal-enter;
+}
+
+@-webkit-keyframes mandal-leave {
+  0% {
+    opacity: 1;
+    max-height: 1080px;
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: translateX(100px);
+  }
+  100% {
+    max-height: 0px;
+  }
+}
+
+@keyframes mandal-leave {
+  0% {
+    opacity: 1;
+    max-height: 1080px;
+  }
+  50% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    max-height: 0px;
+  }
+}
+
+.mandal-leave {
+  max-height: 0px;
+  opacity: 0;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-name: mandal-leave;
+  animation-name: mandal-leave;
+}

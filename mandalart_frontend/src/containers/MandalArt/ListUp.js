@@ -11,6 +11,10 @@ class ListUp extends Component {
         loadingState: false
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return JSON.stringify(this.props) !== JSON.stringify(nextProps);
+    }
+
     componentDidMount() {
         const { handleScroll } = this;
 

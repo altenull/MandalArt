@@ -46,11 +46,14 @@ class ListUp extends Component {
         });
     }
 
-    handleRemove = async (id) => {
+    handleRemove = async (id, index) => {
         const { MandalArtActions } = this.props;
 
         try {
             const result = await MandalArtActions.mandalartDelete(id);
+            if (result.statusText === 'OK') {
+                MandalArtActions.mandalartDeleteInState({index});
+            }
         } catch (e) {
             console.log(e);
         }

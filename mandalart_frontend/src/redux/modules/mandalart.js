@@ -12,6 +12,7 @@ const MANDALART_SET = 'mandalart/MANDALART_SET'; // mandalart state 저장
 const MANDALART_GET_OLDER = 'mandalart/MANDALART_GET_OLDER';
 const MANDALART_UPDATE = 'mandalart/MANDALART_UPDATE';
 const MANDALART_DELETE = 'mandalart/MANDALART_DELETE';
+const MANDALART_DELETE_IN_STATE = 'mandalart/MANDALART_DELETE_IN_STATE';
 
 // Action Create
 export const changeGoal = createAction(CHANGE_GOAL);
@@ -23,6 +24,7 @@ export const mandalartSet = createAction(MANDALART_SET);
 export const mandalartGetOlder = createAction(MANDALART_GET_OLDER, MandalArtAPI.mandalartGetOlder);
 export const mandalartUpdate = createAction(MANDALART_UPDATE);
 export const mandalartDelete = createAction(MANDALART_DELETE, MandalArtAPI.mandalartDelete);
+export const mandalartDeleteInState = createAction(MANDALART_DELETE_IN_STATE)
 
 const initialState = Map({
     write: Map({
@@ -59,26 +61,25 @@ export default handleActions({
         type: MANDALART_WRITE
     }),
     ...pender({
+        type: MANDALART_DELETE
+    }),
+    ...pender({
         type: MANDALART_GET
     }),
-    [MANDALART_SET]: (state, action) => {
-        const { mandalData } = action.payload;
-        console.log('MANDALART_SET');
-        console.log(mandalData);
-        return state.setIn(['listUp', 'mandalData'], fromJS(mandalData));
-    },
     ...pender({
         type: MANDALART_GET_OLDER
     }),
+    [MANDALART_SET]: (state, action) => {
+        const { mandalData } = action.payload;
+        return state.setIn(['listUp', 'mandalData'], fromJS(mandalData));
+    },
     [MANDALART_UPDATE]: (state, action) => {
         const { mandalData } = action.payload;
         const prevMandalData = state.getIn(['listUp', 'mandalData']);
-        const result = prevMandalData.concat(fromJS(mandalData));
-        console.log('MANDALART_UPDATE');
-        console.log(result.toJS());
-        return state.setIn(['listUp', 'mandalData'], result);
+        return state.setIn(['listUp', 'mandalData'], prevMandalData.concat(fromJS(mandalData)));
     },
-    ...pender({
-        type: MANDALART_DELETE
-    })
+    [MANDALART_DELETE_IN_STATE]: (state, action) => {
+        const mandalData = state.getIn(['listUp', 'mandalData']);
+        return state.setIn(['listUp', 'mandalData'], mandalData.delete(action.payload.index));
+    }
 }, initialState);

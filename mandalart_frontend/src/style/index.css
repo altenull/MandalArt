@@ -8,6 +8,7 @@ body {
   font-family: 'Nanum Square', 'Material Icons';
   box-sizing: border-box;
   background: #E1E5E9;
+  overflow-x: hidden;
 }
 
 *, *:before, *:after {

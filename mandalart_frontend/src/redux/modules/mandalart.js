@@ -42,7 +42,8 @@ const initialState = Map({
     }),
     listUp: Map({
         mandalData: List()
-    })
+    }),
+    deleteID: ''
 });
 
 export default handleActions({
@@ -61,7 +62,8 @@ export default handleActions({
         type: MANDALART_WRITE
     }),
     ...pender({
-        type: MANDALART_DELETE
+        type: MANDALART_DELETE,
+        onSuccess: (state, action) => state.set('deleteID', action.payload.data._id)
     }),
     ...pender({
         type: MANDALART_GET
@@ -80,6 +82,7 @@ export default handleActions({
     },
     [MANDALART_DELETE_IN_STATE]: (state, action) => {
         const mandalData = state.getIn(['listUp', 'mandalData']);
-        return state.setIn(['listUp', 'mandalData'], mandalData.delete(action.payload.index));
+        return state.setIn(['listUp', 'mandalData'], mandalData.delete(action.payload.index))
+                    .set('deleteID', '');
     }
 }, initialState);

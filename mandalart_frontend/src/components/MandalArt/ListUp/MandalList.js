@@ -1,7 +1,7 @@
 import React from 'react';
 import Mandal from './Mandal';
 
-const MandalList = ({data, currentUser, handleRemove}) => {
+const MandalList = ({data, currentUser, handleRemove, deleteID}) => {
     const mandalList = data.map((data, i) =>
         <Mandal
             data={data}
@@ -9,6 +9,7 @@ const MandalList = ({data, currentUser, handleRemove}) => {
             onRemove={handleRemove}
             key={data._id}
             index={i}
+            deleteID={(data._id === deleteID)}
         />
     );
 

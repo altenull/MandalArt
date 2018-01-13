@@ -52,7 +52,9 @@ class ListUp extends Component {
         try {
             const result = await MandalArtActions.mandalartDelete(id);
             if (result.statusText === 'OK') {
-                MandalArtActions.mandalartDeleteInState({index});
+                setTimeout(() => {
+                    MandalArtActions.mandalartDeleteInState({index});
+                }, 1000);
             }
         } catch (e) {
             console.log(e);
@@ -86,13 +88,13 @@ class ListUp extends Component {
     }
 
     render() {
-        const { user, mandalData } = this.props;
+        const { user, mandalData, deleteID } = this.props;
         const { handleRemove } = this;
         const writer = user.getIn(['loggedInfo', 'nickname']);
 
         return (
             <ListWrapper isLogged={user.get('logged')}>
-                {!mandalData.isEmpty() ? <MandalList data={mandalData.toJS()} currentUser={writer} handleRemove={handleRemove} /> : <Spinner/>}
+                {!mandalData.isEmpty() ? <MandalList data={mandalData.toJS()} currentUser={writer} handleRemove={handleRemove} deleteID={deleteID} /> : <Spinner/>}
             </ListWrapper>
         );
     }
@@ -101,7 +103,8 @@ class ListUp extends Component {
 export default connect(
     (state) => ({
         user: state.user,
-        mandalData: state.mandalart.getIn(['listUp', 'mandalData'])
+        mandalData: state.mandalart.getIn(['listUp', 'mandalData']),
+        deleteID: state.mandalart.get('deleteID')
     }),
     (dispatch) => ({
         MandalArtActions: bindActionCreators(mandalartActions, dispatch)

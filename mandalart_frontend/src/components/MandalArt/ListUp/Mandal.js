@@ -93,9 +93,9 @@ const StarCount = styled.span`
     margin-left: 0.4rem;
 `;
 
-const Mandal = ({data, ownership, onRemove, index}) => {
+const Mandal = ({data, ownership, onRemove, index, deleteID}) => {
     return(
-        <Positioner>
+        <Positioner className={deleteID ? 'animated mandal-leave' : 'animated mandal-enter'}>
             <ShadowedBox>
                 <Header>
                     <HeaderInfo>

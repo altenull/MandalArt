@@ -80,7 +80,7 @@ exports.modify = async (ctx) => {
     });
 }
 
-// DELETE MandalArt: DELETE /api/v1.0/mandalart/:id
+// DELETE MandalArt: DELETE /api/v1.0/mandalart/delete/:id
 exports.delete = async (ctx) => {
     // CHECK MandalArt ID VALIDITY
     const { id } = ctx.params;
@@ -91,23 +91,12 @@ exports.delete = async (ctx) => {
         return;
     }
 
-    MandalArt.findById(id, (err, mandalarts) => {
+    await MandalArt.findByIdAndRemove(id, (err, mandalart) => {
         if (err)
             throw err;
 
-        if (!mandalarts) {
-            ctx.status = 404; // Not Found -> No Resource
-            return;
-        }
-
-        MandalArt.remove({ _id: id }, err => {
-            if (err)
-                throw err;
-            ctx.body = 'success';
-        });
+        ctx.body = mandalart;
     });
-    // CHECK LOGIN STATUS
-    // 마찬가지로 로그인 상태를..
 }
 
 // READ MandalArt: GET /api/v1.0/mandalart/

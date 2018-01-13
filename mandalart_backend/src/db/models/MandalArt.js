@@ -46,7 +46,7 @@ MandalArt.statics.validateObjectId = function({id}) {
 }
 
 MandalArt.statics.generateObjectId = function({id}) {
-    return mongoose.Types.ObjectId(id);
+    return new mongoose.Types.ObjectId(id);
 }
 
 module.exports = mongoose.model('MandalArt', MandalArt);

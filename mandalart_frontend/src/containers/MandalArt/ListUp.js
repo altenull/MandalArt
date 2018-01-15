@@ -12,7 +12,17 @@ class ListUp extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return JSON.stringify(this.props) !== JSON.stringify(nextProps);
+        const current = {
+            props: this.props,
+            state: this.state
+        };
+
+        const next = {
+            props: nextProps,
+            state: nextState
+        };
+
+        return JSON.stringify(current) !== JSON.stringify(next);
     }
 
     componentDidMount() {
@@ -65,9 +75,28 @@ class ListUp extends Component {
         }
     }
 
+    handleStar = async (id, index) => {
+        const { MandalArtActions, user } = this.props;
+        const provider = user.getIn(['loggedInfo', 'nickname']);
+
+        try {
+            const mandal = await MandalArtActions.mandalartStar({
+                id,
+                provider
+            });
+            if (mandal.statusText === 'OK') {
+                const mandalData = mandal.data;
+                MandalArtActions.mandalartUpdateInState({index, mandalData});
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     _getMandals = async () => {
         const { MandalArtActions } = this.props;
         const mandals = await MandalArtActions.mandalartGet();
+        
         this._setMandals(mandals);
     }
 
@@ -76,7 +105,10 @@ class ListUp extends Component {
         const mandalDataJS = mandalData.toJS();
         const lastIndex = mandalDataJS.length - 1;
         const mandals = await MandalArtActions.mandalartGetOlder(mandalDataJS[lastIndex]._id);
-        this._updateMandals(mandals);
+
+        if (mandals.data.length !== 0) {
+            this._updateMandals(mandals);
+        }
     }
 
     _setMandals = async (mandals) => {
@@ -93,12 +125,21 @@ class ListUp extends Component {
 
     render() {
         const { user, mandalData, deleteID } = this.props;
-        const { handleRemove } = this;
+        const { handleRemove, handleStar } = this;
         const writer = user.getIn(['loggedInfo', 'nickname']);
+        const isLogged = user.get('logged');
 
         return (
-            <ListWrapper isLogged={user.get('logged')}>
-                {!mandalData.isEmpty() ? <MandalList data={mandalData.toJS()} currentUser={writer} handleRemove={handleRemove} deleteID={deleteID} /> : <Spinner/>}
+            <ListWrapper isLogged={isLogged}>
+                {!mandalData.isEmpty()
+                    ? <MandalList
+                        data={mandalData.toJS()}
+                        currentUser={writer}
+                        handleRemove={handleRemove}
+                        deleteID={deleteID}
+                        handleStar={(isLogged ? handleStar : ()=>{console.log('need Login');})}/>
+                    : <Spinner/>
+                }
             </ListWrapper>
         );
     }

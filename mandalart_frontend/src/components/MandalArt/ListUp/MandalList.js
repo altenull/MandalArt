@@ -1,7 +1,7 @@
 import React from 'react';
 import Mandal from './Mandal';
 
-const MandalList = ({data, currentUser, handleRemove, deleteID}) => {
+const MandalList = ({data, currentUser, handleRemove, deleteID, handleStar}) => {
     const mandalList = data.map((data, i) =>
         <Mandal
             data={data}
@@ -10,6 +10,7 @@ const MandalList = ({data, currentUser, handleRemove, deleteID}) => {
             key={data._id}
             index={i}
             deleteID={(data._id === deleteID)}
+            onStar={handleStar}
         />
     );
 

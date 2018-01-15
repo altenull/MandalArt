@@ -130,3 +130,36 @@ exports.getOlder = async (ctx) => {
             ctx.body = mandalarts;
         });
 }
+
+// GIVE Star: POST /api/v1.0/mandalart/star
+exports.star = async (ctx) => {
+    const { id, provider } = ctx.request.body;
+    let objId = MandalArt.generateObjectId(id);
+
+    if ( !MandalArt.validateObjectId(objId) ) {
+        ctx.status = 400; // Bad Request
+        return;
+    }
+
+    await MandalArt.findById(id, (err, mandalart) => {
+        if (err)
+            throw err;
+
+        if (!mandalart) {
+            cts.status = 404;
+            return;
+        }
+
+        let index = mandalart.starred.indexOf(provider);
+        let hasStarred = (index === -1) ? false : true;
+
+        if (!hasStarred) {
+            mandalart.starred.push(provider);
+        } else {
+            mandalart.starred.splice(index, 1);
+        }
+
+        mandalart.save();
+        ctx.body = mandalart;
+    });
+}

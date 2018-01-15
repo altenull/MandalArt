@@ -8,5 +8,6 @@ mandalart.put('/:id', mandalartCtrl.modify);
 mandalart.delete('/:id', mandalartCtrl.delete);
 mandalart.get('/', mandalartCtrl.get);
 mandalart.get('/older/:id', mandalartCtrl.getOlder);
+mandalart.post('/star', mandalartCtrl.star);
 
 module.exports = mandalart;

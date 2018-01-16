@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const User = require('../../../db/models/User');
 
+// ACCOUNT REGISTER : POST /api/v1.0/auth/register/local
 exports.localRegister = async (ctx) => {
     // 데이터 검증
     const schema = Joi.object().keys({
@@ -51,7 +52,9 @@ exports.localRegister = async (ctx) => {
     ctx.body = user;
 }
 
+// LOGIN: POST /api/v1.0/auth/login/local
 exports.localLogin = async (ctx) => {
+    // 데이터 검증
     const schema = Joi.object().keys({
         email: Joi.string().email().required(),
         password: Joi.string().required()
@@ -78,6 +81,7 @@ exports.localLogin = async (ctx) => {
         return;
     }
 
+    // 토큰 생성
     let token = null;
     try {
         token = await user.generateToken();
@@ -89,6 +93,16 @@ exports.localLogin = async (ctx) => {
     ctx.body = user;
 };
 
+// LOGOUT: POST /api/v1.0/auth/logout
+exports.logout = async (ctx) => {
+    ctx.cookies.set('access_token', null, {
+        maxAge: 0,
+        httpOnly: true
+    });
+    ctx.status = 204;
+};
+
+// EXISTS: GET /api/v1.0/auth/exists/:key(email}nickname)/:value
 exports.exists = async (ctx) => {
     const { key, value } = ctx.params;
     let user = null;
@@ -104,14 +118,7 @@ exports.exists = async (ctx) => {
     };
 }
 
-exports.logout = async (ctx) => {
-    ctx.cookies.set('access_token', null, {
-        maxAge: 0,
-        httpOnly: true
-    });
-    ctx.status = 204;
-};
-
+// CHECK: GET /api/v1.0/auth/check
 exports.check = (ctx) => {
     const { user } = ctx.request;
 

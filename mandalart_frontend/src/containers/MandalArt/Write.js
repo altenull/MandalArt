@@ -27,9 +27,9 @@ class Write extends Component {
     handleWrite = async () => {
         const { goal, user, plans, history, MandalArtActions } = this.props;
         const writer = user.getIn(['loggedInfo', 'nickname']);
+        const isLogged = user.get('logged');
 
-        // TODO : 로그인 상태 아닐 시 경고처리
-        if (!user.get('logged')) {
+        if (!isLogged) {
             return;
         }
 

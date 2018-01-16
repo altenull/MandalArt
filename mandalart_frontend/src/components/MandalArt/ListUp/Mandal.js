@@ -75,7 +75,7 @@ const Footer = styled.div`
 `;
 
 const StarButton = styled.i`
-    color: #9E9E9E;
+    color : ${props => props.givedStar ? '#FEC000' : '#9E9E9E'};
     cursor: pointer;
 
     &:hover {
@@ -93,7 +93,7 @@ const StarCount = styled.span`
     margin-left: 0.4rem;
 `;
 
-const Mandal = ({data, ownership, onRemove, index, deleteID, onStar}) => {
+const Mandal = ({data, ownership, onRemove, index, deleteID, onStar, givedStar}) => {
     return(
         <Positioner className={deleteID ? 'animated mandal-leave' : 'animated mandal-enter'}>
             <ShadowedBox>
@@ -112,7 +112,12 @@ const Mandal = ({data, ownership, onRemove, index, deleteID, onStar}) => {
                     <MandalContents goal={data.goal} plans={data.plans}/>
                 </Content>
                 <Footer>
-                    <StarButton className="material-icons" onClick={() => onStar(data._id, index)}>star</StarButton>
+                    <StarButton
+                        className="material-icons"
+                        onClick={() => onStar(data._id, index)}
+                        givedStar={givedStar}>
+                        star
+                    </StarButton>
                     <StarCount>{data.starred.length}</StarCount>
                 </Footer>
             </ShadowedBox>

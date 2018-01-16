@@ -44,14 +44,14 @@ class ListUp extends Component {
         $(window).scroll(() => {
             // WHEN HEIGHT UNDER SCROLLBOTTOM IS LESS THEN 250
             if ($(document).height() - $(window).height() - $(window).scrollTop() < 250) {
-                if(!this.state.loadingState){
-                    this._getOlderMandals();
+                if (!this.state.loadingState){
+                    this._getMandals();
                     this.setState({
                         loadingState: true
                     });
                 }
             } else {
-                if(this.state.loadingState){
+                if (this.state.loadingState){
                     this.setState({
                         loadingState: false
                     });
@@ -64,8 +64,8 @@ class ListUp extends Component {
         const { MandalArtActions } = this.props;
 
         try {
-            const result = await MandalArtActions.mandalartDelete(id);
-            if (result.statusText === 'OK') {
+            const response = await MandalArtActions.mandalartDelete(id);
+            if (response.status === 200) {
                 setTimeout(() => {
                     MandalArtActions.mandalartDeleteInState({index});
                 }, 1000);
@@ -76,51 +76,44 @@ class ListUp extends Component {
     }
 
     handleStar = async (id, index) => {
-        const { MandalArtActions, user } = this.props;
-        const provider = user.getIn(['loggedInfo', 'nickname']);
+        const { MandalArtActions } = this.props;
+        const { user } = this.props;
+        const giver = user.getIn(['loggedInfo', 'nickname']);
 
         try {
-            const mandal = await MandalArtActions.mandalartStar({
+            const response = await MandalArtActions.mandalartStar({
                 id,
-                provider
+                giver
             });
-            if (mandal.statusText === 'OK') {
-                const mandalData = mandal.data;
-                MandalArtActions.mandalartUpdateInState({index, mandalData});
+            if (response.status === 200) {
+                const mandalData = response.data;
+                MandalArtActions.mandalartStarInState({index, mandalData});
             }
         } catch (e) {
             console.log(e);
         }
+
+        setTimeout(() => {
+            this._getMandals();
+        }, 2000);
     }
 
     _getMandals = async () => {
         const { MandalArtActions } = this.props;
-        const mandals = await MandalArtActions.mandalartGet();
-        
-        this._setMandals(mandals);
-    }
+        const { mandalData, status, isLast } = this.props;
 
-    _getOlderMandals = async () => {
-        const { MandalArtActions, mandalData } = this.props;
-        const mandalDataJS = mandalData.toJS();
-        const lastIndex = mandalDataJS.length - 1;
-        const mandals = await MandalArtActions.mandalartGetOlder(mandalDataJS[lastIndex]._id);
-
-        if (mandals.data.length !== 0) {
-            this._updateMandals(mandals);
+        if (isLast) {
+            return;
         }
-    }
 
-    _setMandals = async (mandals) => {
-        const { MandalArtActions } = this.props;
-        const mandalData = mandals.data;
-        await MandalArtActions.mandalartSet({mandalData});
-    }
+        if (status === 'INIT') {
+            await MandalArtActions.mandalartGet();
+        } else {
+            const mandalDataJS = mandalData.toJS();
+            const lastIndex = mandalDataJS.length - 1;
 
-    _updateMandals = async (mandals) => {
-        const { MandalArtActions } = this.props;
-        const mandalData = mandals.data;
-        await MandalArtActions.mandalartUpdate({mandalData});
+            await MandalArtActions.mandalartGetOlder(mandalDataJS[lastIndex]._id);
+        }
     }
 
     render() {
@@ -149,7 +142,9 @@ export default connect(
     (state) => ({
         user: state.user,
         mandalData: state.mandalart.getIn(['listUp', 'mandalData']),
-        deleteID: state.mandalart.get('deleteID')
+        deleteID: state.mandalart.get('deleteID'),
+        isLast: state.mandalart.getIn(['listUp', 'isLast']),
+        status: state.mandalart.getIn(['listUp', 'status'])
     }),
     (dispatch) => ({
         MandalArtActions: bindActionCreators(mandalartActions, dispatch)

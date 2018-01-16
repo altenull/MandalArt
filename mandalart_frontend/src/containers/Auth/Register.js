@@ -12,6 +12,7 @@ class Register extends Component {
 
     setError = (message) => {
         const { AuthActions } = this.props;
+
         AuthActions.setError({
             form: 'register',
             message
@@ -53,6 +54,7 @@ class Register extends Component {
 
         try {
             await AuthActions.checkEmailExists(email);
+
             if (this.props.exists.get('email')) {
                 this.setError('이미 존재하는 이메일입니다.');
             } else {
@@ -68,6 +70,7 @@ class Register extends Component {
 
         try {
             await AuthActions.checkNicknameExists(nickname);
+
             if (this.props.exists.get('nickname')) {
                 this.setError('이미 존재하는 닉네임입니다.');
             } else {
@@ -96,9 +99,9 @@ class Register extends Component {
     };
 
     handleLocalRegister = async () => {
-        const { form, AuthActions, UserActions, error, history } = this.props;
+        const { AuthActions, UserActions } = this.props;
+        const { form, error, history } = this.props;
         const { email, nickname, password } = form.toJS();
-
         const { validate } = this;
 
         if (error)
@@ -132,6 +135,7 @@ class Register extends Component {
 
     componentWillUnmount() {
         const { AuthActions } = this.props;
+        
         AuthActions.initializeForm('login');
     }
 

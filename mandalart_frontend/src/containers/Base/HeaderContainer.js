@@ -24,6 +24,7 @@ class HeaderContainer extends Component {
     
     handleLogout = async () => {
         const { UserActions } = this.props;
+
         try {
             await UserActions.logout();
         } catch (e) {

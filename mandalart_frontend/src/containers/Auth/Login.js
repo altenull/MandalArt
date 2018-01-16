@@ -20,7 +20,8 @@ class Login extends Component {
     }
 
     handleLocalLogin = async () => {
-        const { form, AuthActions, UserActions, history } = this.props;
+        const { AuthActions, UserActions } = this.props;
+        const { form, history } = this.props;
         const { email, password } = form.toJS();
 
         try {
@@ -44,15 +45,18 @@ class Login extends Component {
 
     componentWillUnmount() {
         const { AuthActions } = this.props;
+
         AuthActions.initializeForm('login');
     }
 
     setError = (message) => {
         const { AuthActions } = this.props;
+
         AuthActions.setError({
             form: 'login',
             message
         });
+        
         return false;
     }
 

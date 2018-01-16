@@ -11,6 +11,7 @@ const MandalList = ({data, currentUser, handleRemove, deleteID, handleStar}) => 
             index={i}
             deleteID={(data._id === deleteID)}
             onStar={handleStar}
+            givedStar={(data.starred.includes(currentUser))}
         />
     );
 

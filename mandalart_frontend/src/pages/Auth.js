@@ -4,11 +4,12 @@ import { bindActionCreators } from 'redux';
 import * as baseActions from 'redux/modules/base';
 import { AuthWrapper } from 'components/Auth';
 import { Route } from 'react-router-dom';
-import { Login, Register } from 'containers/Auth'
+import { Login, Register } from 'containers/Auth';
 
 class Auth extends Component {
     componentWillMount() {
         this.props.BaseActions.setHeaderVisibility(false);
+        this.props.BaseActions.setHeaderScrollNecessity(false);
     }
 
     componentWillUnmount() {
@@ -26,9 +27,7 @@ class Auth extends Component {
 }
 
 export default connect(
-    (state) => ({
-
-    }),
+    null,
     (dispatch) => ({
         BaseActions: bindActionCreators(baseActions, dispatch)
     })

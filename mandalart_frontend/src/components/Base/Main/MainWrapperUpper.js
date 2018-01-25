@@ -6,18 +6,23 @@ import { Link } from 'react-router-dom';
 
 const Positioner = styled.div`
     width: 100%;
-    height: 100%;
+    height: auto;
+    z-index: 100;
 `;
 
 const GradientBackground = styled.div`
-    background: linear-gradient(to Right, ${oc.orange[6]}, ${oc.orange[3]});
     display: flex;
     justify-content: center;
+    background: linear-gradient(to Right, ${oc.teal[8]}, ${oc.teal[3]});
+
+    ${media.phone`
+        background: linear-gradient(to bottom, ${oc.teal[8]}, ${oc.teal[3]});
+    `}
 `;
 
 const MainContents = styled.div`
     width: 1000px;
-    height: 600px;
+    height: calc(100vh - 55px);
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -29,9 +34,6 @@ const MainContents = styled.div`
 
     ${media.tablet`
         width: 80%;
-    `}
-
-    ${media.phone`
         justify-content: center;
         flex-direction: column;
     `}
@@ -41,17 +43,25 @@ const ContentL = styled.div`
     display: flex;
     flex-direction: column;
 
+    ${media.tablet`
+        margin-bottom: 4rem;
+    `}
+
     ${media.phone`
-        margin-bottom: 2rem;
+        align-items: center;
     `}
 `;
 
 const Text1 = styled.h1`
     color: ${oc.gray[1]};
     font-size: 2.6rem;
-    text-shadow: 1.3px 1.3px 0 ${oc.orange[7]};
+    text-shadow: 1.3px 1.3px 0 ${oc.gray[7]};
 
-    ${media.tablet`
+    ${media.wide`
+        font-size: 2.4rem;
+    `}
+
+    ${media.phone`
         font-size: 2rem;
     `}
 `;
@@ -59,10 +69,14 @@ const Text1 = styled.h1`
 const Text2 = styled.p`
     color: ${oc.gray[2]};
     font-size: 1.6rem;
-    text-shadow: 1.1px 1.1px 0 ${oc.orange[7]};
+    text-shadow: 1.1px 1.1px 0 ${oc.gray[7]};
 
-    ${media.tablet`
-      font-size: 1rem;
+    ${media.wide`
+        font-size: 1.4rem;
+    `}
+
+    ${media.phone`
+        font-size: 1.2rem;
     `}
 `;
 
@@ -71,15 +85,6 @@ const ContentR = styled.div`
     height: 230px;
     display: flex;
     flex-wrap: wrap;
-
-    ${media.tablet`
-        width: 140px;
-        height: 140px;
-    `}
-
-    ${media.phone`
-        margin-top: 2rem;
-    `}
 `;
 
 const Cell = styled.div`
@@ -92,16 +97,10 @@ const Cell = styled.div`
     justify-content: center;
     border-radius: 2px;
     box-sizing: border-box;
-    background: ${oc.red[5]};
-    color: ${oc.gray[3]};
+    background: ${oc.lime[5]};
+    color: ${oc.gray[7]};
     ${shadow(1)}
     margin: 3px;
-
-    ${media.tablet`
-        min-width: 40px;
-        min-height: 40px;
-        font-size: 1.4rem;
-    `}
 `;
 
 const CenterCell = styled.div`
@@ -114,16 +113,10 @@ const CenterCell = styled.div`
     justify-content: center;
     border-radius: 2px;
     box-sizing: border-box;
-    border: 1px solid ${oc.gray[4]};
-    background: ${oc.red[6]};
-    color: ${oc.gray[3]};
+    background: ${oc.lime[8]};
+    color: ${oc.gray[2]};
+    ${shadow(1)}
     margin: 3px;
-
-    ${media.tablet`
-        min-width: 40px;
-        min-height: 40px;
-        font-size: 1.4rem;
-    `}
 `;
 
 const BorderedButton = styled(Link)`
@@ -143,19 +136,25 @@ const BorderedButton = styled(Link)`
     transition: all .3s;
 
     &:hover {
-        background: ${oc.orange[6]};
+        background: ${oc.teal[9]};
         transform: translateY(-1px);
         ${shadow(1)}
     }
 
     &:active {
-        background: ${oc.orange[5]};
+        background: ${oc.teal[6]};
     }
 
-    ${media.tablet`
+    ${media.wide`
+        width: 9rem;
+        height: 3.5rem;
+        font-size: 1.6rem;
+    `}
+
+    ${media.phone`
         width: 8rem;
         height: 3rem;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     `}
 `;
 
@@ -165,8 +164,8 @@ const MainWrapperUpper = () => {
             <GradientBackground>
                 <MainContents>
                     <ContentL>
-                        <Text1>Hi Stranger~!</Text1>
-                        <Text2>Mandal-Art로 새로운 계획을 세워보세요!</Text2>
+                        <Text1>새로운 시작!</Text1>
+                        <Text2>미니 Mandal-Art로 나만의 멋진 목표를 세워보세요!</Text2>
                         <BorderedButton to="/mandalart">시작하기</BorderedButton>
                     </ContentL>
                     <ContentR>

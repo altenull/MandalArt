@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
 import { Link } from 'react-router-dom';
-import { shadow } from 'lib/styleUtils';
+import { shadow, media } from 'lib/styleUtils';
 
 const BorderedButton = styled(Link)`
     font-weight: 700;
@@ -17,13 +17,18 @@ const BorderedButton = styled(Link)`
 
     &:hover {
         background: white;
-        color: ${oc.yellow[7]};
+        color: ${oc.teal[7]};
         ${shadow(1)}
     }
 
     &:active {
         transform: translateY(3px);
     }
+
+    ${media.phone`
+        font-size: 0.8rem;
+    `}
+
 `;
 
 const LoginButton = () => {

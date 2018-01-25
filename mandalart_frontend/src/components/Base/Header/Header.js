@@ -22,7 +22,7 @@ const Background = styled.div`
     justify-content: center;
     height: auto;
     transition: .2s ease;
-    background: ${props => props.needScroll ? (props.scrolled && oc.orange[6]) : oc.orange[6]};
+    background: ${props => props.needScroll ? (props.scrolled && oc.teal[8]) : oc.teal[8]};
 `;
 
 // 해더의 내용
@@ -32,9 +32,8 @@ const HeaderContents = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding: 0 1rem;
 
-    padding-right: 1rem;
-    padding-left: 1rem;
     ${media.wide`
         width: 992px;
     `}

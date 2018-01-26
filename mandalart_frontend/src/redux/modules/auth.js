@@ -10,6 +10,7 @@ const CHECK_EMAIL_EXISTS = 'auth/CEHCK_EMAIL_EXISTS'; // 이메일 존재여부 
 const CHECK_NICKNAME_EXISTS = 'auth/CHECK_NICKNAME_EXISTS'; // 닉네임 존재여부 하ㅗㄱ인
 const LOCAL_REGISTER = 'auth/LOCAL_REGISTER'; // 이메일 회원가입
 const LOCAL_LOGIN = 'auth/LOCAL_LOGIN'; // 이메일 로그인
+const SOCIAL_LOGIN = 'auth/SOCIAL_LOGIN'; // 소셜 로그인
 const LOGOUT = 'auth/LOGOUT'; // 로그아웃
 const SET_ERROR = 'auth/SET_ERROR'; // 에러 설정
 
@@ -22,6 +23,7 @@ export const checkNicknameExists = createAction(CHECK_NICKNAME_EXISTS, AuthAPI.c
 
 export const localRegister = createAction(LOCAL_REGISTER, AuthAPI.localRegister);
 export const localLogin = createAction(LOCAL_LOGIN, AuthAPI.localLogin);
+export const socialLogin = createAction(SOCIAL_LOGIN);
 
 export const logout = createAction(LOGOUT, AuthAPI.logout);
 
@@ -77,6 +79,9 @@ export default handleActions({
         type: LOCAL_LOGIN,
         onSuccess: (state, action) => state.set('result', Map(action.payload.data))
     }),
+    [SOCIAL_LOGIN]: (state, action) => {
+        return state.set('result', Map(action.payload));
+    },
     [SET_ERROR]: (state, action) => {
         const { form, message } = action.payload;
         return state.setIn([form, 'error'], message);

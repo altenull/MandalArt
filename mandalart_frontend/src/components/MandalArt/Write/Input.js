@@ -1,19 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
+import { media } from 'lib/styleUtils';
 
 const HoveredInput = styled.input`
-    min-width: 180px;
-    min-height: 180px;
-    max-width: 180px;
-    min-height: 180px;
-    padding: 0.3rem;
-    margin: 0.3rem;
+    min-width: 130px;
+    min-height: 130px;
+    max-width: 130px;
+    max-height: 130px;
+    padding: 0.5rem;
+    margin: 0.5rem;
     font-size: 1rem;
     font-weight: 700;
     text-align: center;
     color: ${oc.gray[9]};
-    background: ${oc.orange[3]};
+    background: ${oc.teal[4]};
     border: none;
     border-radius: 3px;
     box-sizing: border-box;
@@ -22,8 +23,19 @@ const HoveredInput = styled.input`
     }
     &:hover,
     &:focus {
-        background: ${oc.orange[4]};
+        background: ${oc.teal[5]};
     }
+
+    ${media.tablet`
+        min-width: calc(65vw / 3);
+        max-width: calc(65vw / 3);
+        min-height: calc(65vw / 3);
+        max-height: calc(65vw / 3);
+    `}
+
+    ${media.phone`
+        font-size: 0.7rem;
+    `}
 `;
 
 const Input = ({...rest}) => {

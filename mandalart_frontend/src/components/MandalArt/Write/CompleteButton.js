@@ -1,34 +1,44 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
-import { shadow } from 'lib/styleUtils';
+import { shadow, media } from 'lib/styleUtils';
 
 const Positioner = styled.div`
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 1.2rem 0;
 `;
 
 const InvertedButton = styled.div`
-    width: 180px;
-    font-size: 1.6rem;
+    width: 130px;
+    font-size: 1.2rem;
     font-weight: 700;
     text-align: center;
     color: white;
     border-radius: 3px;
-    line-height: 3rem;
-    padding: 0.5rem;
+    line-height: 2.2rem;
+    padding: 0.4rem;
     padding-bottom: 0.4rem;
     cursor: pointer;
     border-radius: 2px;
     text-decoration: none;
-    transition: all .3s;
-    background: ${oc.yellow[5]};
+    transition: .3s all;
+    background: ${oc.teal[6]};
 
     &:hover {
-        background: ${oc.yellow[4]};
+        background: ${oc.teal[5]};
         ${shadow(1)}
     }
+
+    ${media.tablet`
+        width: calc(65vw / 3);
+    `}
+
+    ${media.phone`
+        font-size: 0.8rem;
+        line-height: 1.6rem;
+        padding: 0.2rem;
+    `}
 `;
 
 const CompleteButton = ({onClick}) => {

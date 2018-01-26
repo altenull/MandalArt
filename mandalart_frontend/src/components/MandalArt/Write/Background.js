@@ -2,17 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
 
-const OrangeBackground = styled.div`
+const TealBackground = styled.div`
+    width: 100%;
     display: flex;
     justify-content: center;
-    background: ${oc.orange[6]};
+    background: ${oc.teal[8]};
     min-height: 25rem;
     z-index: 10;
 `;
 
 const Background = () => {
     return (
-        <OrangeBackground/>
+        <TealBackground/>
     );
 }
 

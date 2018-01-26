@@ -5,6 +5,7 @@ import * as userActions from 'redux/modules/user';
 import { bindActionCreators } from 'redux';
 import storage from 'lib/storage';
 import { throttle } from 'lodash';
+import * as firebase from 'firebase';
 
 class HeaderContainer extends Component {
     state = {
@@ -24,11 +25,22 @@ class HeaderContainer extends Component {
     
     handleLogout = async () => {
         const { UserActions } = this.props;
+        const loginMethod = this.props.user.get('loginMethod');
 
-        try {
-            await UserActions.logout();
-        } catch (e) {
-            console.log(e);
+        if (loginMethod === 'local') {
+            try {
+                await UserActions.logout();
+            } catch (e) {
+                console.log(e);
+            }
+        } else if (loginMethod === 'facebook') {
+            firebase.auth().signOut().then(() => {
+                UserActions.logout();
+            }).catch((e) => {
+                console.log(e);
+            });
+        } else if (loginMethod === 'google') {
+            
         }
 
         storage.remove('loggedInfo');

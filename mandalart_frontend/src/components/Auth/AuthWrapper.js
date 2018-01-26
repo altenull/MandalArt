@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
-import { shadow } from 'lib/styleUtils';
+import { shadow, media } from 'lib/styleUtils';
 import { Link } from 'react-router-dom';
 
 const Positioner = styled.div`
@@ -14,10 +14,14 @@ const Positioner = styled.div`
 const ShadowedBox = styled.div`
     width: 400px;
     ${shadow(2)}
+
+    ${media.phone`
+        width: 355px;
+    `}
 `;
 
 const LogoWrapper = styled.div`
-    background: ${oc.orange[6]};
+    background: ${oc.teal[8]};
     height: 4rem;
     display: flex;
     align-items: center;

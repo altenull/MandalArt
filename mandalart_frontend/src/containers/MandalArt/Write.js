@@ -59,15 +59,15 @@ class Write extends Component {
                 <Background/>
                 <InputWrapper>
                     <InputSet>
-                        <Input name="plan1" placeholder="세부목표1" value={plan1} onChange={handleChange}/>
-                        <Input name="plan2" placeholder="세부목표2" value={plan2} onChange={handleChange}/>
-                        <Input name="plan3" placeholder="세부목표3" value={plan3} onChange={handleChange}/>
-                        <Input name="plan4" placeholder="세부목표4" value={plan4} onChange={handleChange}/>
-                        <Input name="goal"  placeholder="최종목표"  value={goal}  onChange={handleChange}/>
-                        <Input name="plan5" placeholder="세부목표5" value={plan5} onChange={handleChange}/>
-                        <Input name="plan6" placeholder="세부목표6" value={plan6} onChange={handleChange}/>
-                        <Input name="plan7" placeholder="세부목표7" value={plan7} onChange={handleChange}/>
-                        <Input name="plan8" placeholder="세부목표8" value={plan8} onChange={handleChange}/>
+                        <Input name="plan1" placeholder="One" value={plan1} onChange={handleChange}/>
+                        <Input name="plan2" placeholder="Two" value={plan2} onChange={handleChange}/>
+                        <Input name="plan3" placeholder="Three" value={plan3} onChange={handleChange}/>
+                        <Input name="plan4" placeholder="Four" value={plan4} onChange={handleChange}/>
+                        <Input name="goal"  placeholder="목표"  value={goal}  onChange={handleChange}/>
+                        <Input name="plan5" placeholder="Five" value={plan5} onChange={handleChange}/>
+                        <Input name="plan6" placeholder="Six" value={plan6} onChange={handleChange}/>
+                        <Input name="plan7" placeholder="Seven" value={plan7} onChange={handleChange}/>
+                        <Input name="plan8" placeholder="Eight" value={plan8} onChange={handleChange}/>
                     </InputSet>
                     <CompleteButton onClick={handleWrite}/>
                 </InputWrapper>

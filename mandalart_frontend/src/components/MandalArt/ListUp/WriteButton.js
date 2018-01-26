@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
-import { shadow } from 'lib/styleUtils';
+import { shadow, media } from 'lib/styleUtils';
 import { Link } from 'react-router-dom';
 
 const InvertedButton = styled(Link)`
@@ -15,12 +15,22 @@ const InvertedButton = styled(Link)`
     padding: 0.8rem 1rem;
     text-decoration: none;
     transition: all .3s;
-    background: ${oc.yellow[5]};
+    background: ${oc.teal[6]};
 
     &:hover {
-        background: ${oc.yellow[4]};
+        background: ${oc.teal[5]};
         ${shadow(1)}
     }
+
+    ${media.tablet`
+        font-size: 1rem;
+        padding: 0.7rem 0.9rem;
+    `}
+
+    ${media.phone`
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem;
+    `}
 `;
 
 const WriteButton = () => {

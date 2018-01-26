@@ -1,18 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import oc from 'open-color';
-import { shadow } from 'lib/styleUtils';
+import { shadow, media } from 'lib/styleUtils';
 import TimeAgo from 'react-timeago';
 import MandalContents from './MandalContents';
 
 const Positioner = styled.div`
-    width: 550px;
-    height: 550px;
+    width: 580px;
     margin: 0 auto;
     
     & + & {
         margin-top: 2rem;
     }
+
+    ${media.tablet`
+        width: 90%;
+    `}
 `;
 
 const ShadowedBox = styled.div`
@@ -28,10 +31,18 @@ const Header = styled.div`
     justify-content: space-between;
     align-items: flex-end;
     padding: 1.6rem 2rem;
+
+    ${media.phone`
+        padding: 1.4rem 2rem;
+    `}
 `;
 
 const HeaderInfo = styled.div`
     display: flex;
+
+    ${media.tablet`
+        flex-direction: column;
+    `}
 `;
 
 const Writer = styled.a`
@@ -39,6 +50,14 @@ const Writer = styled.a`
     font-size: 1.2rem;
     font-weight: 700;
     text-decoration: none;
+
+    ${media.tablet`
+        font-size: 1.1rem;
+    `}
+
+    ${media.phone`
+        font-size: 1rem;
+    `}
 `;
 
 const WroteLog = styled.div`
@@ -47,6 +66,15 @@ const WroteLog = styled.div`
     font-weight: 400;
     padding-left: 0.5rem;
     padding-right: 1rem;
+
+    ${media.tablet`
+        font-size: 1rem;
+        padding: 0;
+    `}
+
+    ${media.phone`
+        font-size: 0.9rem;
+    `}
 `;
 
 const ControlButton = styled.i`

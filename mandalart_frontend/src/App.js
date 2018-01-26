@@ -6,6 +6,7 @@ import storage from 'lib/storage';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userActions from 'redux/modules/user';
+import { Helmet } from 'react-helmet';
 
 class App extends Component {
     initializeUserInfo = async () => {
@@ -31,6 +32,9 @@ class App extends Component {
     render() {
         return (
             <div>
+                <Helmet>
+                    <title>Mandal-Art : 새로운 시작</title>
+                </Helmet>
                 <HeaderContainer/>
                 <Route exact path="/" component={Home}/>
                 <Route path="/auth" component={Auth}/>

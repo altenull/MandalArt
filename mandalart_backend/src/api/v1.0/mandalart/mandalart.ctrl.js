@@ -5,7 +5,7 @@ const MandalArt = require('../../../db/models/MandalArt');
 exports.get = async (ctx) => {
     await MandalArt.find()
         .sort({_id: -1})
-        .limit(3)
+        .limit(5)
         .exec((err, mandalarts) => {
             if (err)
                 throw err;
@@ -25,7 +25,7 @@ exports.getOlder = async (ctx) => {
 
     await MandalArt.find({ _id: { $lt: id }})
         .sort({_id: -1})
-        .limit(3)
+        .limit(5)
         .exec((err, mandalarts) => {
             if (err)
                 throw err;

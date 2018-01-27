@@ -1,8 +1,11 @@
 const Joi = require('joi');
 const MandalArt = require('../../../db/models/MandalArt');
+const logger = require('lib/logger');
 
 // READ MandalArt: GET /api/v1.0/mandalart
 exports.get = async (ctx) => {
+    logger.info('[mandalart.ctrl] get request occured');
+
     await MandalArt.find()
         .sort({_id: -1})
         .limit(5)
@@ -15,6 +18,8 @@ exports.get = async (ctx) => {
 
 // READ OlderMandalArt: GET /api/v1.0/mandalart/older/:id
 exports.getOlder = async (ctx) => {
+    logger.info('[mandalart.ctrl] getOlder request occured');
+
     const { id } = ctx.params;
     let objId = MandalArt.generateObjectId(id);
 
@@ -35,6 +40,8 @@ exports.getOlder = async (ctx) => {
 
 // WRITE MandalArt: POST /api/v1.0/mandalart/write
 exports.write = async (ctx) => {
+    logger.info('[mandalart.ctrl] write request occured');
+
     const schema = Joi.object().keys({
         writer: Joi.string().required(),
         goal: Joi.string().min(1).max(15).required(),
@@ -69,6 +76,8 @@ exports.write = async (ctx) => {
 
 // GIVE Star: POST /api/v1.0/mandalart/star
 exports.star = async (ctx) => {
+    logger.info('[mandalart.ctrl] star request occured');
+
     const { id, giver } = ctx.request.body;
     let objId = MandalArt.generateObjectId(id);
 
@@ -102,6 +111,8 @@ exports.star = async (ctx) => {
 
 // DELETE MandalArt: DELETE /api/v1.0/mandalart/:id
 exports.delete = async (ctx) => {
+    logger.info('[mandalart.ctrl] delete request occured');
+
     const { id } = ctx.params;
     let objId = MandalArt.generateObjectId(id);
 

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const logger = require('lib/logger');
 
 const {
     MONGO_URI: mongoURI
@@ -13,10 +14,10 @@ module.exports = (function() {
                 useMongoClient: true
             }).then(
                 () => {
-                    console.log('Successfully connected to mongodb');
+                    logger.info('Successfully connected to mongoDB');
                 }
-            ).catch(e => {
-                console.error(e);
+            ).catch((e) => {
+                logger.error(e);
             });
         },
         disconnect () {

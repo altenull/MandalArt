@@ -20,9 +20,18 @@ db.connect();
 app.use(jwtMiddleware);
 app.use(bodyParser());
 
+const fs = require('fs');
+const logDir = 'log';
+
+if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir);
+}
+
 router.use('/api', api.routes());
 app.use(router.routes()).use(router.allowedMethods());
 
+const logger = require('lib/logger');
+
 app.listen(port, () => {
-    console.log(`MandalArt server is listening to port ${port}`);
+    logger.info(`MandalArt API server is listening to port ${port}`);
 });

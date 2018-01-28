@@ -6,6 +6,14 @@ import './style/index.css';
 import './style/animations.css';
 import configureStore from 'redux/configureStore';
 import * as firebase from 'firebase';
+import axios from 'axios';
+
+window.axios = axios;
+
+if (process.env.NODE_ENV === 'production') {
+    axios.defaults.withCredentials = true;
+    axios.defaults.baseURL = 'https://api-mandalart-1076847305.ap-northeast-2.elb.amazonaws.com';
+}
 
 const store = configureStore();
 

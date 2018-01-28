@@ -39,5 +39,5 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1"
   },
-  "proxy": "http://ec2-13-124-233-122.ap-northeast-2.compute.amazonaws.com:4000"
+  "proxy": "https://api-mandalart-1076847305.ap-northeast-2.elb.amazonaws.com"
 }

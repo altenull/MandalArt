@@ -19,6 +19,7 @@ const logger = new (winston.Logger)({
             colorize: false,
             showLevel: true,
             json: false,
+            eol: '\r\n',
             timestamp: timeStampFormat
         }),
         new (winston.transports.Console)({
@@ -34,7 +35,6 @@ const logger = new (winston.Logger)({
         new (winstonDaily)({
             name: 'exception-file',
             level: 'error',
-            timestamp: timeStampFormat,
             filename: `${logDir}/-exception.log`,
             datePattern: 'yyyy-MM-dd',
             prepend: true,
@@ -42,7 +42,9 @@ const logger = new (winston.Logger)({
             maxsize: 50000000,
             maxFiles: 1000,
             showLevel: true,
-            json: false
+            json: false,
+            eol: '\r\n',
+            timestamp: timeStampFormat
         }),
         new (winston.transports.Console)({
             name: 'exception-console',

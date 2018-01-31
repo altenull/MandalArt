@@ -60,8 +60,8 @@ const Card = styled.div`
     `}
 
     ${media.phone`
-        width: 15rem;
-        height: 15rem;
+        width: 12.5rem;
+        height: 12.5rem;
     `}
 `;
 
@@ -82,7 +82,7 @@ const CardHeader = styled.p`
     `}
 
     ${media.phone`
-        font-size: 1.2rem;
+        font-size: 1rem;
     `}
 `;
 
@@ -101,7 +101,7 @@ const CardText = styled.p`
     `}
 
     ${media.phone`
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     `}
 `;
 
@@ -133,8 +133,8 @@ const MandalImg = styled.img`
     `}
 
     ${media.phone`
-        width: 15rem;
-        height: 15rem;
+        width: 12.5rem;
+        height: 12.5rem;
     `}
 `;
 
@@ -150,8 +150,10 @@ const OtaniImg = styled.img`
     `}
 
     ${media.phone`
-        widht: 2.6rem;
-        height: 2.6rem;
+        widht: 2.2rem;
+        height: 2.2rem;
+        max-width : 2.2rem;
+        max-height: 2.2rem;
     `}
 `;
 
@@ -166,11 +168,11 @@ const NameText = styled.p`
     `}
 
     ${media.tablet`
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     `}
 
     ${media.phone`
-        font-size: 0.7rem;
+        font-size: 0.65rem;
     `}
 `;
 

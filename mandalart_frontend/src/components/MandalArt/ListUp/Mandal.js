@@ -29,7 +29,7 @@ const ShadowedBox = styled.div`
 const Header = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     padding: 1.6rem 2rem;
 
     ${media.phone`
@@ -79,9 +79,8 @@ const WroteLog = styled.div`
 
 const ControlButton = styled.i`
     color: #9E9E9E;
-    font-size: 0.6rem;
-    text-align: right;
     cursor: pointer;
+    font-size: 24px;
 
     &:hover {
         color: #C5C5C5;

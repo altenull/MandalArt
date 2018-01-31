@@ -48,7 +48,7 @@ const ContentL = styled.div`
     `}
 
     ${media.phone`
-        align-items: center;
+        margin-bottom: 3rem;
     `}
 `;
 
@@ -62,7 +62,7 @@ const Text1 = styled.h1`
     `}
 
     ${media.phone`
-        font-size: 2rem;
+        font-size: 1.6rem;
     `}
 `;
 
@@ -76,7 +76,7 @@ const Text2 = styled.p`
     `}
 
     ${media.phone`
-        font-size: 1.2rem;
+        font-size: 0.8rem;
     `}
 `;
 
@@ -85,6 +85,12 @@ const ContentR = styled.div`
     height: 230px;
     display: flex;
     flex-wrap: wrap;
+
+    ${media.phone`
+        width: 200px;
+        height: 200px;
+        justify-conetent: center;
+    `}
 `;
 
 const Cell = styled.div`
@@ -101,6 +107,14 @@ const Cell = styled.div`
     color: ${oc.gray[7]};
     ${shadow(1)}
     margin: 3px;
+
+    ${media.phone`
+        min-width: 60px;
+        max-width: 60px;
+        min-height: 60px;
+        max-height: 60px;
+        font-size: 2rem;
+    `}
 `;
 
 const CenterCell = styled.div`
@@ -117,6 +131,14 @@ const CenterCell = styled.div`
     color: ${oc.gray[2]};
     ${shadow(1)}
     margin: 3px;
+
+    ${media.phone`
+        min-width: 60px;
+        max-width: 60px;
+        min-height: 60px;
+        max-height: 60px;
+        font-size: 2rem;
+    `}
 `;
 
 const BorderedButton = styled(Link)`
@@ -152,9 +174,10 @@ const BorderedButton = styled(Link)`
     `}
 
     ${media.phone`
-        width: 8rem;
-        height: 3rem;
-        font-size: 1.4rem;
+        width: 6.8rem;
+        height: 2.5rem;
+        font-size: 1.2rem;
+        margin-top: 1rem;
     `}
 `;
 

@@ -59,14 +59,4 @@ const logger = new (winston.Logger)({
     ]
 });
 
-logger.on('logged', (info) => {
-    const awsS3 = require('lib/awsS3');
-    awsS3.uploadLogFile();
-});
-
-logger.on('error', (error) => {
-    const awsS3 = require('lib/awsS3');
-    awsS3.uploadLogFile();
-});
-
 module.exports = logger;

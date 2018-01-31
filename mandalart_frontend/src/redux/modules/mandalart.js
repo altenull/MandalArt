@@ -71,7 +71,7 @@ export default handleActions({
             const { data } = action.payload;
             return state.setIn(['listUp', 'mandalData'], fromJS(data))
                         .setIn(['listUp', 'status'], 'SUCCESS')
-                        .setIn(['listUp', 'isLast'], (data.length < 3));
+                        .setIn(['listUp', 'isLast'], (data.length < 5));
         }
     }),
     ...pender({
@@ -81,7 +81,7 @@ export default handleActions({
             const { data } = action.payload;
             return state.setIn(['listUp', 'mandalData'], state.getIn(['listUp', 'mandalData']).concat(fromJS(data)))
                         .setIn(['listUp', 'status'], 'SUCCESS')
-                        .setIn(['listUp', 'isLast'], (data.length < 3));
+                        .setIn(['listUp', 'isLast'], (data.length < 5));
         }
     }),
     ...pender({

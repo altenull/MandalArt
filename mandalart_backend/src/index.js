@@ -20,7 +20,7 @@ db.connect();
 app.use((ctx, next) => {
     const allowedHosts = [
         'mandalart.kr',
-        'mandalart-web.s3-website.ap-northeast-2.amazonaws.com'
+        'mandalart-web.s3-website-us-east-1.amazonaws.com'
     ];
     const origin = ctx.header['origin'];
     allowedHosts.every(el => {
@@ -55,4 +55,12 @@ const logger = require('lib/logger');
 
 app.listen(port, () => {
     logger.info(`MandalArt API server is listening to port ${port}`);
+});
+
+const schedule = require('node-schedule');
+const awsS3 = require('lib/awsS3');
+
+schedule.scheduleJob('0 * * * *', () => {
+    logger.info('log file upload schedule working');
+    awsS3.uploadLogFile();
 });

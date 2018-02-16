@@ -69,7 +69,7 @@ export default handleActions({
     }),
     ...pender({
         type: CHECK_NICKNAME_EXISTS,
-        onSuccess: (state, action) => state.setIn(['register', 'exists', 'nickname'], action.payload.data.exitst)
+        onSuccess: (state, action) => state.setIn(['register', 'exists', 'nickname'], action.payload.data.exists)
     }),
     ...pender({
         type: LOCAL_REGISTER,

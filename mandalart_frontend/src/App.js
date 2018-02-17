@@ -34,6 +34,8 @@ class App extends Component {
             <div>
                 <Helmet>
                     <title>Mandal-Art : 새로운 시작</title>
+                    <meta name="keywords" content="Mandalart, 만다라트, 계획, altenull"/>
+                    <meta name="description" content="Mandal-Art로 나만의 멋진 목표를 계획하고 새로운 시작을 함께 해보세요!"/>
                 </Helmet>
                 <HeaderContainer/>
                 <Route exact path="/" component={Home}/>

@@ -31,7 +31,9 @@ Everything in this project is in JavaScript.
 - winston
 
 #### AWS
+
 - EC2
 - S3
 - Cloudfront
 - ELB(ElasticLoadbalancer)
+- Route53

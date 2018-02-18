@@ -5,8 +5,8 @@
 ## About
 
 Mandalart is a planning tool.
-Mandarat became popular with Japanese baseball player [Ohtani Shohei](https://en.wikipedia.org/wiki/Shohei_Ohtani).
-You can make and post your own mandalart.
+Mandalart became popular with Japanese baseball player [Ohtani Shohei](https://en.wikipedia.org/wiki/Shohei_Ohtani).
+You can make and post your own mandalart here.
 
 ## Stack
 

@@ -2,7 +2,7 @@
 
 > This service is now available at https://mandalart.kr/
 
-![1](https://mandalart.kr/ogimage.png)
+<center><img src="https://mandalart.kr/ogimage.png" width="650" height="300"></center>
 
 ## About
 
@@ -22,7 +22,7 @@ Everything in this project is in JavaScript.
 - styled-components
 - axios
 
-### Server
+### Backend
 
 - node.js
 - koa

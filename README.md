@@ -2,7 +2,7 @@
 
 > This service is now available at https://mandalart.kr/
 
-<center><img src="https://mandalart.kr/ogimage.png" width="650" height="300"></center>
+<p align="center"><img src="https://mandalart.kr/ogimage.png" width="650" height="300"></p>
 
 ## About
 

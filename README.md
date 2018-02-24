@@ -4,15 +4,12 @@
 
 <p align="center"><img src="https://mandalart.kr/ogimage.png" width="650" height="300"></p>
 
-## About
+# About
 
-Mandalart is a planning tool that helps you achieve your goals.
-Mandalart became popular with Japanese baseball player [Ohtani Shohei](https://en.wikipedia.org/wiki/Shohei_Ohtani).
-You can make and post your own mandalart here.
+**Mandalart is a planning tool** that helps you achieve your goals.
+Mandalart became popular with Japanese baseball player [Ohtani Shohei](https://en.wikipedia.org/wiki/Shohei_Ohtani). You can make and post your own mandalart here.
 
-## Stack
-
-Everything in this project is in JavaScript. 
+# Stack
 
 ### Frontend
 
@@ -30,7 +27,7 @@ Everything in this project is in JavaScript.
 - aws-sdk
 - winston
 
-#### AWS
+### AWS
 
 - EC2
 - S3

@@ -5,20 +5,20 @@ import MainWrapperBottom from './MainWrapperBottom';
 import Footer from './Footer';
 
 const Positioner = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const MainContainer = () => {
-    return (
-        <Positioner>
-            <MainWrapperUpper></MainWrapperUpper>
-            <MainWrapperBottom></MainWrapperBottom>
-            <Footer></Footer>
-        </Positioner>
-    );
+  return (
+    <Positioner>
+      <MainWrapperUpper />
+      <MainWrapperBottom />
+      <Footer />
+    </Positioner>
+  );
 };
 
 export default MainContainer;

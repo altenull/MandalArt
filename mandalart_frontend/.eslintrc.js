@@ -2,11 +2,11 @@ module.exports = {
     "extends": "standard",
     "rules": {
         "indent": [
-            "error",
-            4
+            1,
+            2
         ],
         "semi": [
-            "error",
+            1,
             "always"
         ],
         "no-trailing-spaces": 0,

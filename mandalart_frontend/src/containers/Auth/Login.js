@@ -32,7 +32,7 @@ class Login extends Component {
         });
 
         firebase.auth().signInWithPopup(provider).then((result) => {
-            const token = result.credential.accessToken;
+            // const token = result.credential.accessToken;
             const nickname = result.user.displayName;
             const email = result.user.email;
 
@@ -65,7 +65,7 @@ class Login extends Component {
         });
     
         firebase.auth().signInWithPopup(provider).then((result) => {
-            const token = result.credential.accessToken;
+            // const token = result.credential.accessToken;
             const nickname = result.user.displayName;
             const email = result.user.email;
 

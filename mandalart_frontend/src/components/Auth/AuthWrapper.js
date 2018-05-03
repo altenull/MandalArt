@@ -14,7 +14,6 @@ const Positioner = styled.div`
 const ShadowedBox = styled.div`
   width: 400px;
   ${shadow(2)}
-
   ${media.phone`
     width: 355px;
   `}

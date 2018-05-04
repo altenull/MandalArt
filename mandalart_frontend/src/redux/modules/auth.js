@@ -4,15 +4,15 @@ import { pender } from 'redux-pender';
 import * as AuthAPI from 'lib/api/auth';
 
 // action types
-const CHANGE_INPUT = 'auth/CHANGE_INPUT'; // input 값 변경
-const INITIALIZE_FORM = 'auth/INITIALIZE_FORM'; // form 초기화
-const CHECK_EMAIL_EXISTS = 'auth/CEHCK_EMAIL_EXISTS'; // 이메일 존재여부 확인
-const CHECK_NICKNAME_EXISTS = 'auth/CHECK_NICKNAME_EXISTS'; // 닉네임 존재여부 하ㅗㄱ인
-const LOCAL_REGISTER = 'auth/LOCAL_REGISTER'; // 이메일 회원가입
-const LOCAL_LOGIN = 'auth/LOCAL_LOGIN'; // 이메일 로그인
-const SOCIAL_LOGIN = 'auth/SOCIAL_LOGIN'; // 소셜 로그인
-const LOGOUT = 'auth/LOGOUT'; // 로그아웃
-const SET_ERROR = 'auth/SET_ERROR'; // 에러 설정
+const CHANGE_INPUT = 'auth/CHANGE_INPUT';
+const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
+const CHECK_EMAIL_EXISTS = 'auth/CEHCK_EMAIL_EXISTS';
+const CHECK_NICKNAME_EXISTS = 'auth/CHECK_NICKNAME_EXISTS';
+const LOCAL_REGISTER = 'auth/LOCAL_REGISTER';
+const LOCAL_LOGIN = 'auth/LOCAL_LOGIN';
+const SOCIAL_LOGIN = 'auth/SOCIAL_LOGIN';
+const LOGOUT = 'auth/LOGOUT';
+const SET_ERROR = 'auth/SET_ERROR';
 
 // action creators
 export const changeInput = createAction(CHANGE_INPUT);

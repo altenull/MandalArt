@@ -1,6 +1,6 @@
 # MandalArt
 
-> This service is now available at https://mandalart.kr/
+> This service is closed.
 
 <p align="center"><img src="https://mandalart.kr/ogimage.png" width="650" height="300"></p>
 
